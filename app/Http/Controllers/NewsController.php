@@ -12,7 +12,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $newsall = News::all();
+        return view('newsdir.news');
     }
 
     /**
@@ -20,7 +21,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        #return view('newsdir.')
     }
 
     /**
