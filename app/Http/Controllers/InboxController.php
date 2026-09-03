@@ -10,9 +10,10 @@ class InboxController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Inbox $inbox)
     {
-        //
+        $inbox = Inbox:latest()->paginate(10);
+        return view('admin-inbox.index', compact('items'));
     }
 
     /**
@@ -20,7 +21,7 @@ class InboxController extends Controller
      */
     public function create()
     {
-        //
+        return view('inboxdir.create');
     }
 
     /**
@@ -28,7 +29,15 @@ class InboxController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'program' => 'required|string|max:255',
+            'message' => 'required|string|max:255',
+        ]);
+
+        Inbox::create($validated);
+        return redirect()->route('admin-inbox.index')
     }
 
     /**
@@ -44,7 +53,7 @@ class InboxController extends Controller
      */
     public function edit(Inbox $inbox)
     {
-        //
+        return view('admin-inbox.edit')
     }
 
     /**
@@ -52,7 +61,15 @@ class InboxController extends Controller
      */
     public function update(Request $request, Inbox $inbox)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'program' => 'required|string|max:255',
+            'message' => 'required|string|max:255',
+        ]);
+
+        Inbox::create($validated);
+        return redirect()->route('admin-inbox.index');
     }
 
     /**
@@ -60,6 +77,7 @@ class InboxController extends Controller
      */
     public function destroy(Inbox $inbox)
     {
-        //
+        $inbox->delete();
+        return redirect()->back();
     }
 }

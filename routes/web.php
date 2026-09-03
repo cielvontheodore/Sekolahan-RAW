@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Models\News;
+use App\Http\Models\Gallery;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/admin', function () {
-    return view('dashboard');
+    return view('welcome');
 })->name('admin');
 
 Route::resource('/admin/news', NewsController::class)->names('admin-news');
