@@ -4,3 +4,21 @@
 <a href="{{ route('admin-gallery.create') }}">
     <p>klik sini</p>
 </a>
+
+@foreach ($items as $item)
+    <div>
+        <h3>{{ $item->title }}</h3>
+
+        <!-- Tombol Edit (Arahkan ke halaman edit) -->
+        <a href="{{ route('admin-gallery.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+
+        <!-- Form Delete (Wajib Pake Form + DELETE Method) -->
+        <form action="{{ route('admin-gallery.destroy', $item->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau hapus?')">Delete</button>
+        </form>
+    </div>
+@endforeach
+
+

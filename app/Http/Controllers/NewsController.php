@@ -55,7 +55,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return view('newsdir.edit');
+        return view('newsdir.edit', compact('news'));
     }
 
     /**
@@ -73,7 +73,7 @@ class NewsController extends Controller
             $validated['image'] = $request->file('image')->store('newsdir', 'public');
         };
 
-        News::update($validated);
+        $news->update($validated);
         return route('admin-news.index');
     }
 
@@ -82,7 +82,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        News::delete();
-        return redirect->route('admin-news.index');
+        $news->delete();
+        return redirect()->route('admin-news.index');
     }
 }
