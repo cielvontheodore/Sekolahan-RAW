@@ -10,10 +10,10 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(News $news)
     {
-        $newsall = News::all();
-        return view('newsdir.news');
+        $news = News::latest()->paginate(10);
+        return view('newsdir.index', compact('news'));
     }
 
     /**
@@ -21,7 +21,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        #return view('newsdir.')
+        return view('newsdir.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,png,webp,jpeg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('newsdir', 'public');
+        };
+        News::create($validated);
+        return redirect()->route('admin-news.index');
     }
 
     /**
@@ -45,7 +55,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('newsdir.edit');
     }
 
     /**
@@ -53,7 +63,18 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,png,webp,jpeg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('newsdir', 'public');
+        };
+
+        News::update($validated);
+        return route('admin-news.index');
     }
 
     /**
@@ -61,6 +82,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        News::delete();
+        return redirect->route('admin-news.index');
     }
 }
