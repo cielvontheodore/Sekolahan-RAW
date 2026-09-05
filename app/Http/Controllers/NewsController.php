@@ -74,7 +74,7 @@ class NewsController extends Controller
         };
 
         $news->update($validated);
-        return route('admin-news.index');
+        return redirect()->route('admin-news.index');
     }
 
     /**

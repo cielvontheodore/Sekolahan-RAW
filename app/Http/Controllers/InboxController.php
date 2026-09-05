@@ -13,7 +13,7 @@ class InboxController extends Controller
     public function index(Inbox $inbox)
     {
         $inbox = Inbox:latest()->paginate(10);
-        return view('admin-inbox.index', compact('items'));
+        return view('admin-inbox.index', compact('inbox'));
     }
 
     /**
@@ -53,7 +53,7 @@ class InboxController extends Controller
      */
     public function edit(Inbox $inbox)
     {
-        return view('admin-inbox.edit')
+        return view('admin-inbox.edit', compact('inbox'));
     }
 
     /**
@@ -68,7 +68,7 @@ class InboxController extends Controller
             'message' => 'required|string|max:255',
         ]);
 
-        Inbox::create($validated);
+        $inbox->update($validated);
         return redirect()->route('admin-inbox.index');
     }
 
@@ -78,6 +78,6 @@ class InboxController extends Controller
     public function destroy(Inbox $inbox)
     {
         $inbox->delete();
-        return redirect()->back();
+        return redirect()->route('admin-inbox.index')
     }
 }
