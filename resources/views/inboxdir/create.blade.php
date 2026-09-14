@@ -6,17 +6,22 @@
 
             <div>
                 <p>description</p>
-                <input type="text" name="description" value="">
+                <input type="name" name="name" value="">
             </div>
 
             <div>
                 <p>description</p>
-                <input type="text" name="description" value="">
+                <input type="email" name="email" value="">
             </div>
 
             <div>
                 <p>description</p>
-                <input type="text" name="description" value="">
+                <input type="program" name="program" value="">
+            </div>
+
+            <div>
+                <p>description</p>
+                <input type="message" name="message" value="">
             </div>
 
             <button type="submit" class="btn btn-success">Save</button>
@@ -24,4 +29,3 @@
         </form>
     </div>
 </div>
-

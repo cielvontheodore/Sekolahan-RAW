@@ -12,7 +12,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $services = Services::latest()->paginate(10);
+        return view("servicedir.index", compact("services"));
+
     }
 
     /**
@@ -20,7 +22,7 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        //
+        return view("servicedir.edit");
     }
 
     /**
@@ -28,7 +30,13 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' =>  'required|string|max:255',
+            'description' =>  'required|string|max:255',
+        ]);
+
+        Services::create($validate);
+        return redirect()->route("admin-services.index");
     }
 
     /**
@@ -44,7 +52,7 @@ class ServicesController extends Controller
      */
     public function edit(Services $services)
     {
-        //
+        return view("servicedir.edit", compact("services"));
     }
 
     /**
@@ -52,7 +60,13 @@ class ServicesController extends Controller
      */
     public function update(Request $request, Services $services)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $services->update($validated);
+        return redirect()->route("admin-services.index");
     }
 
     /**
@@ -60,6 +74,7 @@ class ServicesController extends Controller
      */
     public function destroy(Services $services)
     {
-        //
+        $services->delete();
+        return redirect()->route("admin-services.index");
     }
 }
