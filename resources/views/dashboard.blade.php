@@ -33,26 +33,6 @@
                 </div>
             </div>
 
-            {{-- Services --}}
-            <div class="col-md-6 col-xl-3">
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body">
-                        <h6 class="text-muted mb-2">Services</h6>
-
-                        <h2 class="fw-bold mb-3">
-                            6
-                        </h2>
-
-                        <a
-                            href="{{ route('admin-services.index') }}"
-                            class="text-decoration-none"
-                        >
-                            Manage Services →
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             {{-- Gallery --}}
             <div class="col-md-6 col-xl-3">
                 <div class="card border-0 shadow-sm h-100">
