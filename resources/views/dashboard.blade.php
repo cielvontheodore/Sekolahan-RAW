@@ -1,5 +1,5 @@
-@vite(['resources/css/app.css', 'resources/js/app.js'])
 <x-app-layout>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
     <x-slot name="header">
         <div>
             <h2 class="fw-bold mb-1">Dashboard</h2>
