@@ -27,7 +27,7 @@
                             href="{{ route('admin-inbox.create') }}"
                             class="btn btn-dark"
                         >
-                            + Add Inbox
+                            + Add Inbox (Dummy)
                         </a>
 
                     </div>
@@ -48,19 +48,19 @@
                                     <h5 class="fw-bold mb-1">
                                         {{ $item->name }}
                                     </h5>
-                                
+
                                     <div class="text-muted small mb-3">
                                         {{ $item->email }} · {{ $item->program }}
                                     </div>
-                                
+
                                     @if ($item->message)
                                         <strong>Message</strong>
-                                
+
                                         <p class="bg-light rounded p-3 mt-2 mb-0 text-muted">
-                                            "{{ Str::limit($item->message, 120) }}"
+                                            "{{ Str::limit($item->message, 255) }}"
                                         </p>
                                     @endif
-                                
+
                                 </div>
 
                                 {{-- Actions --}}
@@ -115,7 +115,7 @@
                                 href="{{ route('admin-inbox.create') }}"
                                 class="btn btn-dark"
                             >
-                                + Add inbox
+                                + Add inbox (Dummy)
                             </a>
 
                         </div>
