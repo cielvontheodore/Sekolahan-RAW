@@ -1,3 +1,17 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background: #f5f6f8;
+}
+
+.admin-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-2px);
+}
