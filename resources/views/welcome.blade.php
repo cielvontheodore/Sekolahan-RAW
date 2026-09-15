@@ -20,7 +20,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav gap-3">
-                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link text-secondary" href="#">About</a></li>
                         <li class="nav-item"><a class="nav-link text-secondary" href="#">Majors</a></li>
                         <li class="nav-item"><a class="nav-link text-secondary" href="#">Gallery</a></li>
