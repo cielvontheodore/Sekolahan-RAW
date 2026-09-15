@@ -118,95 +118,113 @@
         </div>
     </section>
 
-    <section class="container py-5">
-        <h2 class="fw-bold text-center mb-4">News & Articles</h2>
-        <div class="row g-4">
+<section class="container py-5">
+    <h2 class="fw-bold text-center mb-4">News & Articles</h2>
+
+    <div class="row g-4">
+        @forelse ($news as $item)
             <div class="col-md-4">
                 <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-journal-bookmark fs-1 text-secondary"></i>
-                    </div>
+
+                    @if ($item->image)
+                        <img
+                            src="{{ asset('storage/' . $item->image) }}"
+                            alt="{{ $item->title }}"
+                            class="w-100"
+                            style="height: 220px; object-fit: cover;"
+                        >
+                    @else
+                        <div class="bg-secondary bg-opacity-25 p-5 text-center">
+                            <i class="bi bi-journal-bookmark fs-1 text-secondary"></i>
+                        </div>
+                    @endif
+
                     <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 15, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Future of Tech Education</h5>
-                        <p class="card-text text-secondary small">Exploring the integration of AI and machine learning in modern curricula.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
+                        <span class="text-secondary small">
+                            {{ $item->created_at->format('F d, Y') }}
+                        </span>
+
+                        <h5 class="card-title fw-bold mt-1">
+                            {{ $item->title }}
+                        </h5>
+
+                        @if ($item->description)
+                            <p class="card-text text-secondary small">
+                                {{ Str::limit($item->description, 120) }}
+                            </p>
+                        @endif
                     </div>
+
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-building fs-1 text-secondary"></i>
-                    </div>
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 12, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Campus Expansion Plans</h5>
-                        <p class="card-text text-secondary small">Details on the new state-of-the-art engineering facility under construction.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
-                    </div>
+        @empty
+
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-journal-x fs-1 text-secondary"></i>
+                    <p class="text-secondary mt-3 mb-0">
+                        No news available yet.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-mortarboard fs-1 text-secondary"></i>
-                    </div>
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 08, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Student Spotlight</h5>
-                        <p class="card-text text-secondary small">Highlighting present achievements of our national robotics competition winner.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+        @endforelse
+    </div>
+</section>
 
     <section class="container py-5">
-        <h2 class="fw-bold text-center mb-4">Gallery</h2>
-        <div class="row g-4">
+    <h2 class="fw-bold text-center mb-4">Gallery</h2>
+
+    <div class="row g-4">
+        @forelse ($gallery as $item)
             <div class="col-md-4">
                 <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-image fs-1 text-secondary"></i>
-                    </div>
+
+                    @if ($item->image)
+                        <img
+                            src="{{ asset('storage/' . $item->image) }}"
+                            alt="{{ $item->title }}"
+                            class="w-100"
+                            style="height: 220px; object-fit: cover;"
+                        >
+                    @else
+                        <div class="bg-secondary bg-opacity-25 p-5 text-center">
+                            <i class="bi bi-image fs-1 text-secondary"></i>
+                        </div>
+                    @endif
+
                     <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 15, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Future of Tech Education</h5>
-                        <p class="card-text text-secondary small">Exploring the integration of AI and machine learning in modern curricula.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
+                        <span class="text-secondary small">
+                            {{ $item->created_at->format('F d, Y') }}
+                        </span>
+
+                        <h5 class="card-title fw-bold mt-1">
+                            {{ $item->title }}
+                        </h5>
+
+                        @if ($item->description)
+                            <p class="card-text text-secondary small">
+                                {{ Str::limit($item->description, 120) }}
+                            </p>
+                        @endif
                     </div>
+
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-image fs-1 text-secondary"></i>
-                    </div>
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 12, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Campus Expansion Plans</h5>
-                        <p class="card-text text-secondary small">Details on the new state-of-the-art engineering facility under construction.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
-                    </div>
+        @empty
+
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-images fs-1 text-secondary"></i>
+                    <p class="text-secondary mt-3 mb-0">
+                        No gallery items available yet.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-                    <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                        <i class="bi bi-image fs-1 text-secondary"></i>
-                    </div>
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">OCTOBER 08, 2024</span>
-                        <h5 class="card-title fw-bold mt-1">Student Spotlight</h5>
-                        <p class="card-text text-secondary small">Highlighting present achievements of our national robotics competition winner.</p>
-                        <a href="#" class="text-white text-decoration-none small fw-bold">Read Article &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+        @endforelse
+    </div>
+</section>
 
     <section class="container py-5">
         <div class="row align-items-center gy-4">
