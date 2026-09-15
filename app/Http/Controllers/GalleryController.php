@@ -9,8 +9,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $items = Gallery::latest()->paginate(10);
-        return view('gallerydir.index', compact('items'));
+        $gallery = Gallery::latest()->paginate(10);
+        return view('gallerydir.index', compact('gallery'));
     }
 
     public function create()

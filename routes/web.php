@@ -5,10 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\InboxController;
-use App\Http\Controllers\ServicesController;
 use App\Http\Models\News;
 use App\Http\Models\Inbox;
-use App\Http\Models\Services;
 use App\Http\Models\Gallery;
 
 Route::get('/', function () {
