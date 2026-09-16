@@ -48,6 +48,19 @@ class InboxController extends Controller
         //
     }
 
+    public function storepublic(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'program' => 'required|string|max:255',
+            'message' => 'required|string|max:255',
+        ]);
+
+        Inbox::create($validate);
+        return view('welcome.index');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

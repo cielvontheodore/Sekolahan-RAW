@@ -9,8 +9,9 @@
 </head>
 <body class="bg-dark text-white">
 
-    <header class="container py-3">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <header class="container py-3 sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 rounded-4 px-3"
+         style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
             <div class="container-fluid px-0" id="sekolahan">
                 <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
                     <i class="bi bi-asterisk"></i> Sekolahan
@@ -21,11 +22,11 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav gap-3">
                         <li class="nav-item"><a class="nav-link active" href="#sekolahan">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#major">Majors</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#news">News</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#gallery">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#major">Majors</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#news">News</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -241,23 +242,33 @@
             </div>
             <div class="col-lg-6">
                 <div class="card bg-secondary bg-opacity-10 border-0 p-4">
-                    <form>
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label class="form-label text-secondary small">FULL NAME</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="John Doe">
+                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Seseorang" name="name">
                         </div>
                         <div class="mb-3">
                             <label class="form-label text-secondary small">EMAIL ADDRESS</label>
-                            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="john.doe@example.com">
+                            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Seseorang@example.com" name="email">
                         </div>
                         <div class="mb-3">
                             <label class="form-label text-secondary small">PROGRAM OF INTEREST</label>
-                            <select class="form-select bg-dark text-white border-secondary">
+                            <select class="form-select bg-dark text-white border-secondary" name="program">
                                 <option selected>Select a program</option>
                                 <option value="1">Software Engineering</option>
                                 <option value="2">Network Engineering</option>
                                 <option value="3">Hardware Engineering</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small">MESSAGE</label>
+                            <textarea
+                                class="form-control bg-dark text-white border-secondary"
+                                placeholder="Write your message..."
+                                name="message"
+                                rows="4"
+                            ></textarea>
                         </div>
                         <button type="submit" class="btn btn-secondary w-100 fw-bold mt-2 py-2">SUBMIT APPLICATION</button>
                     </form>
