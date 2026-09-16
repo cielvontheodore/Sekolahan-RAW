@@ -11,7 +11,7 @@
 
     <header class="container py-3">
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-            <div class="container-fluid px-0">
+            <div class="container-fluid px-0" id="sekolahan">
                 <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
                     <i class="bi bi-asterisk"></i> Sekolahan
                 </a>
@@ -20,11 +20,12 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav gap-3">
-                        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#">About</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Majors</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#sekolahan">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#major">Majors</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#news">News</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,7 +74,7 @@
 
     <section class="container text-center py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8" id="about">
                 <h2 class="fw-bold mb-3">Shaping the Future of Learning</h2>
                 <p class="text-secondary small">
                     ACADEMY is a global leader in innovative education. We empower students to navigate and thrive in a rapidly changing world through rigorous, inclusive, and forward-thinking academic programs that foster critical thinking, practical skills, and ethical leadership.
@@ -82,7 +83,7 @@
         </div>
     </section>
 
-    <section class="container py-5">
+    <section class="container py-5" id="major">
         <div class="text-center mb-5">
             <h2 class="fw-bold">Vocational Majors</h2>
             <p class="text-secondary small">Hands-on programs designed to prepare you for the real-world demands of industry-leading fields.</p>
@@ -118,7 +119,7 @@
         </div>
     </section>
 
-<section class="container py-5">
+<section class="container py-5" id="news">
     <h2 class="fw-bold text-center mb-4">News & Articles</h2>
 
     <div class="row g-4">
@@ -173,7 +174,7 @@
 </section>
 
     <section class="container py-5">
-    <h2 class="fw-bold text-center mb-4">Gallery</h2>
+    <h2 class="fw-bold text-center mb-4" id="gallery">Gallery</h2>
 
     <div class="row g-4">
         @forelse ($gallery as $item)
@@ -226,7 +227,7 @@
     </div>
 </section>
 
-    <section class="container py-5">
+    <section class="container py-5" id="contact">
         <div class="row align-items-center gy-4">
             <div class="col-lg-6">
                 <h2 class="fw-bold display-6 mb-3">Start Your Academic Journey</h2>
