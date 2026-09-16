@@ -1,3 +1,5 @@
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <!DOCTYPE html>
 <html lang="id" data-bs-theme="dark">
 <head>
@@ -261,6 +263,7 @@
                                 <option value="3">Hardware Engineering</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label text-secondary small">MESSAGE</label>
                             <textarea
@@ -269,6 +272,14 @@
                                 name="message"
                                 rows="4"
                             ></textarea>
+
+                        <div class="mb-3">
+                            <div class="cf-turnstile"
+                                 data-sitekey="{{ config('services.turnstile.site_key') }}"
+                                 data-theme="dark">
+                            </div>
+                        </div>
+
                         </div>
                         <button type="submit" class="btn btn-secondary w-100 fw-bold mt-2 py-2">SUBMIT APPLICATION</button>
                     </form>

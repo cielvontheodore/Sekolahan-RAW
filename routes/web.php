@@ -16,7 +16,9 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::post('/contact', [InboxController::class, 'storepublic'])->name('contact.store');
+Route::post('/contact', [InboxController::class, 'storepublic'])
+    ->middleware('throttle:10,1')
+    ->name('contact.store');
 
 Route::get('/admin', function () {
     return view('dashboard');

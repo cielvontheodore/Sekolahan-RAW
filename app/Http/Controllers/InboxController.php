@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inbox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class InboxController extends Controller
 {
@@ -57,8 +58,23 @@ class InboxController extends Controller
             'message' => 'required|string|max:255',
         ]);
 
+        $response = Http::asForm()->post(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            [
+                'secret' => config('services.turnstile.secret_key'),
+                'response' => $request->input('cf-turnstile-response'),
+                'remoteip' => $request->ip(),
+            ]
+        );
+
+        if (! $response->json('success')) {
+            return back()
+                ->withErrors(['captcha' => 'CAPTCHA verification failed.'])
+                ->withInput();
+        }        
+
         Inbox::create($validate);
-        return view('welcome.index');
+        return view('index');
     }
 
     /**
