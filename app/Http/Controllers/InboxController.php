@@ -74,7 +74,7 @@ class InboxController extends Controller
         }        
 
         Inbox::create($validate);
-        return view('index');
+        return response('Message sent successfully!');
     }
 
     /**

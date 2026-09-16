@@ -8,13 +8,21 @@
     <title>Sekolahan - Empowering Future Leaders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+    </style>
+    
 </head>
 <body class="bg-dark text-white">
 
     <header class="container py-3 sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 rounded-4 px-3"
          style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-            <div class="container-fluid px-0" id="sekolahan">
+            <div class="container-fluid px-0">
                 <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
                     <i class="bi bi-asterisk"></i> Sekolahan
                 </a>
@@ -35,7 +43,7 @@
         </nav>
     </header>
 
-    <section class="container py-5">
+    <section class="container py-5" id="sekolahan">
         <div class="row align-items-center gy-4">
             <div class="col-lg-6">
                 <span class="badge rounded-pill bg-secondary bg-opacity-25 text-light border border-secondary px-3 py-2 mb-3">
@@ -263,25 +271,26 @@
                                 <option value="3">Hardware Engineering</option>
                             </select>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small">MESSAGE</label>
-                            <textarea
-                                class="form-control bg-dark text-white border-secondary"
-                                placeholder="Write your message..."
-                                name="message"
-                                rows="4"
-                            ></textarea>
-
-                        <div class="mb-3">
-                            <div class="cf-turnstile"
-                                 data-sitekey="{{ config('services.turnstile.site_key') }}"
-                                 data-theme="dark">
+                            <div class="mb-3">
+                                <label class="form-label text-secondary small">MESSAGE</label>
+                                <textarea
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Write your message..."
+                                    name="message"
+                                    rows="4"
+                                ></textarea>
                             </div>
-                        </div>
 
-                        </div>
-                        <button type="submit" class="btn btn-secondary w-100 fw-bold mt-2 py-2">SUBMIT APPLICATION</button>
+                            <div class="w-100">
+                                <div class="cf-turnstile"
+                                     data-sitekey="{{ config('services.turnstile.site_key') }}"
+                                     data-theme="dark">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-secondary w-100 fw-bold mt-2 py-2">
+                                SUBMIT APPLICATION
+                            </button>
                     </form>
                 </div>
             </div>
@@ -297,6 +306,35 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+
+        if (!href || href === '#') return;
+
+        const target = document.querySelector(href);
+
+        if (!target) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight + 15 : 0;
+
+        const targetPosition =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight;
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
 </body>
 </html>
