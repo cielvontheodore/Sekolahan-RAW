@@ -74,7 +74,7 @@ class InboxController extends Controller
         }        
 
         Inbox::create($validate);
-        return response('Message sent successfully!');
+        return redirect('/');
     }
 
     /**

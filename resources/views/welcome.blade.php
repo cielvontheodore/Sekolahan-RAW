@@ -34,7 +34,7 @@
                         <li class="nav-item"><a class="nav-link active" href="#sekolahan">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#major">Majors</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('news') }}">News</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -131,7 +131,17 @@
     </section>
 
 <section class="container py-5" id="news">
-    <h2 class="fw-bold text-center mb-4">News & Articles</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">News & Articles</h2>
+
+    <a href="{{ route('news') }}"
+       class="text-white text-decoration-none small d-flex align-items-center gap-1">
+        See more
+        <i class="bi bi-arrow-right"></i>
+    </a>
+    
+    </div>
+
 
     <div class="row g-4">
         @forelse ($news as $item)
