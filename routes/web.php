@@ -63,10 +63,9 @@ require __DIR__.'/auth.php';
 
 
 // todo
-// ganti icon
-// pastiin title
 // rapihin ui admin
 // whatsapp integration
 // ai integration
 // seo
 // ui baru 
+// ppdb
