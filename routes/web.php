@@ -9,6 +9,7 @@ use App\Http\Models\News;
 use App\Http\Models\Inbox;
 use App\Http\Models\Gallery;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 # Route::get('/', function () {
 #     return view('welcome');
@@ -33,6 +34,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/news', NewsController::class)->names('admin-news');
     Route::resource('/admin/gallery', GalleryController::class)->names('admin-gallery');
     Route::resource('/admin/inbox', InboxController::class)->names('admin-inbox');
+});
+
+Route::middleware(['auth', 'can:manage-admins'])->group(function () {
+    Route::resource('/admin/admins', AdminController::class)
+        ->names('admin-admins')
+        ->except(['show']);
 });
 
 require __DIR__.'/auth.php';
