@@ -11,11 +11,10 @@ use App\Http\Models\Gallery;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
-# Route::get('/', function () {
-#     return view('welcome');
-# });
-
 Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/gallery', [HomeController::class, 'gallery'])
+    ->name('gallery');
 
 Route::post('/contact', [InboxController::class, 'storepublic'])
     ->middleware('throttle:10,1')
@@ -30,7 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     Route::resource('/admin/news', NewsController::class)->names('admin-news');
     Route::resource('/admin/gallery', GalleryController::class)->names('admin-gallery');
     Route::resource('/admin/inbox', InboxController::class)->names('admin-inbox');
@@ -43,7 +41,3 @@ Route::middleware(['auth', 'can:manage-admins'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-
-

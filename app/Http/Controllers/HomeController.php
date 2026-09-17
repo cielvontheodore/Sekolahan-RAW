@@ -8,11 +8,18 @@ use App\Models\News;
 
 class HomeController extends Controller
 {
-    public function index() {
-        
+    public function index()
+    {
         $news = News::latest()->take(3)->get();
         $gallery = Gallery::latest()->take(3)->get();
-    
+
         return view('welcome', compact('news', 'gallery'));
+    }
+
+    public function gallery()
+    {
+        $gallery = Gallery::latest()->get();
+
+        return view('dedicatedpage.gallery.index', compact('gallery'));
     }
 }
