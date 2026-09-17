@@ -163,6 +163,7 @@
 
                 <article class="gallery-item">
                     <div class="gallery-card">
+                        <a href="{{ route('gallery.show', $item) }}">
 
                         @if ($item->image)
                             <img

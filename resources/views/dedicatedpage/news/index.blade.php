@@ -121,6 +121,7 @@
             <article class="mb-5">
 
                 <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden">
+                    
 
                     <div class="row g-0">
 
@@ -172,7 +173,7 @@
 
                                 @endif
 
-                                <a href="#"
+                                <a href="{{ route('news.show', $item) }}"
                                    class="text-white text-decoration-none small d-inline-flex align-items-center gap-1">
                                     Read more
                                     <i class="bi bi-arrow-right"></i>

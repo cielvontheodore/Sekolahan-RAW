@@ -22,11 +22,21 @@ class HomeController extends Controller
 
         return view('dedicatedpage.gallery.index', compact('gallery'));
     }
+    
+    public function galleryShow(Gallery $gallery)
+    {
+        return view('dedicatedpage.gallery.dedicated', compact('gallery'));
+    }
 
     public function news()
     {
         $news = News::latest()->get();
 
         return view('dedicatedpage.news.index', compact('news'));
+    }
+
+    public function newsShow(News $news)
+    {
+        return view('dedicatedpage.news.dedicated', compact('news'));
     }
 }
