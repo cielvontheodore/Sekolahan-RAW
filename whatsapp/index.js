@@ -70,16 +70,11 @@ async function startBot() {
     }
 
     // fitur 2
-    else if (lowerText === ".jadwal") {
+    else if (lowerText === "bokep") {
       await sock.sendPresenceUpdate("composing", sender);
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      const listJadwal = `*📅 JADWAL XI PPLG 1*
-        1. Senin : PKK
-        2. Selasa : MTK, Agama, B Sunda
-        3. Rabu : B Inggris, PPKN
-        4. Kamis : PKK, Agama, B Indonesia
-        5. Jumat : Penjas, Sejarah, B Inggris`;
+      const listJadwal = `yo dipikir dulu lah mas`;
 
       await sock.sendMessage(sender, { text: listJadwal });
     }
