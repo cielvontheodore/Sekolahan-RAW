@@ -1,3 +1,4 @@
+import express from "express";
 const {
   makeWASocket,
   useMultiFileAuthState,
@@ -182,8 +183,6 @@ async function startBot() {
 }
 
 startBot().catch((err) => console.error("Error saat start:", err));
-
- import express from "express";
 
  const app = express();
  app.use(express.json());
