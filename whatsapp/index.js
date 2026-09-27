@@ -1,4 +1,3 @@
-import express from "express";
 const {
   makeWASocket,
   useMultiFileAuthState,
@@ -183,23 +182,23 @@ async function startBot() {
 }
 
 startBot().catch((err) => console.error("Error saat start:", err));
-
- const app = express();
- app.use(express.json());
-
- app.post("/send", async (req, res) => {
-     try {
-         await sock.sendMessage(ADMIN_JID, {
-             text: req.body.message,
-         });
-
-         res.json({ success: true });
-     } catch (error) {
-         console.error(error);
-         res.status(500).json({ success: false });
-     }
- });
-
- app.listen(3001, "127.0.0.1", () => {
-     console.log("WhatsApp API listening on :3001");
- });
+//
+//  const app = express();
+//  app.use(express.json());
+//
+//  app.post("/send", async (req, res) => {
+//      try {
+//          await sock.sendMessage(ADMIN_JID, {
+//              text: req.body.message,
+//          });
+//
+//          res.json({ success: true });
+//      } catch (error) {
+//          console.error(error);
+//          res.status(500).json({ success: false });
+//      }
+//  });
+//
+//  app.listen(3001, "127.0.0.1", () => {
+//      console.log("WhatsApp API listening on :3001");
+//  });
