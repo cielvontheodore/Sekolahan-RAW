@@ -7,6 +7,27 @@ const {
 const pino = require("pino");
 const qrcode = require("qrcode-terminal");
 const axios = require("axios");
+const express = require("express");
+
+// express special for url
+
+const app = express();
+
+app.use(express.json());
+
+app.get("/ping", (req, res) => {
+    res.json({
+        success: true,
+        message: "pong",
+    });
+});
+
+app.listen(3001, "127.0.0.1", () => {
+    console.log("WhatsApp API listening on http://127.0.0.1:3001");
+});
+
+//
+
 
 async function startBot() {
   // 1. Setup Auth
