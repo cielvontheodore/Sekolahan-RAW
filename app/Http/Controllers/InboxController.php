@@ -87,6 +87,8 @@ class InboxController extends Controller
         return redirect('/');
     }
 
+    // todo : bang limit form ke 255 di front end
+
     /**
      * Show the form for editing the specified resource.
      */
