@@ -10,6 +10,7 @@ use App\Http\Models\Inbox;
 use App\Http\Models\Gallery;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AiController;
 
 
 // welcome index basically
@@ -28,15 +29,18 @@ Route::get('/news', [HomeController::class, 'news'])
     ->name('news');
 
 Route::get('/news/{news}', [HomeController::class, 'newsShow'])
-    ->name('news.show');    
+    ->name('news.show');
 // ----------------------------------------------------
+
+// chatbot min
+Route::post('/ai/chat', [AiController::class, 'chat']);
 
 // rate limiting native laravel + contact store with cloudflare captcha
 Route::post('/contact', [InboxController::class, 'storepublic'])
     ->middleware('throttle:10,1')
     ->name('contact.store');
 
-// admin dashboard auth middleware    
+// admin dashboard auth middleware
 Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -67,5 +71,5 @@ require __DIR__.'/auth.php';
 // whatsapp integration
 // ai integration
 // seo
-// ui baru 
+// ui baru
 // ppdb
