@@ -49,7 +49,7 @@ app.post("/send", async (req, res) => {
             });
         }
 
-        const { message } = req.body;
+        const { message } = req.body || {};
 
         // Message kosong
         if (!message) {
