@@ -77,11 +77,11 @@ class InboxController extends Controller
 
         Http::post('http://127.0.0.1:3001/send', [
             'message' =>
-                "📩 *Pesan Baru dari Website*\n\n" .
-                "*Nama:* {$validate['name']}\n" .
-                "*Email:* {$validate['email']}\n" .
-                "*Program:* {$validate['program']}\n" .
-                "*Pesan:* {$validate['message']}",
+                "Pesan Baru dari Website\n\n" .
+                "Nama: {$validate['name']}\n" .
+                "Email: {$validate['email']}\n" .
+                "Program: {$validate['program']}\n" .
+                "Pesan: {$validate['message']}",
         ]);
 
         return redirect('/');
