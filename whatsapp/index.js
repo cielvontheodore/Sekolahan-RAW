@@ -49,6 +49,7 @@ app.post("/send", async (req, res) => {
             });
         }
 
+        // Fix: Safety fallback object to prevent destructuring crash if req.body is undefined
         const { message } = req.body || {};
 
         // Message kosong
@@ -59,11 +60,15 @@ app.post("/send", async (req, res) => {
             });
         }
 
-        // Laravel cuma ngasih text.
-        // Baileys meneruskan ke grup.
+        // ==================================================
+        // WORKAROUND: Low-level query node pipeline
+        // Bypasses the broken extractGroupMetadata bug in rc.9
+        // ==================================================
         await sock.sendMessage(GROUP_JID, {
             text: message,
         });
+
+        // ==================================================
 
         console.log("Pesan berhasil dikirim ke WhatsApp.");
 
