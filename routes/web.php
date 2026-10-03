@@ -11,6 +11,7 @@ use App\Http\Models\Gallery;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AiController;
+use App\Http\Controllers\RatingController;
 
 
 // welcome index basically
@@ -31,6 +32,14 @@ Route::get('/news', [HomeController::class, 'news'])
 Route::get('/news/{news}', [HomeController::class, 'newsShow'])
     ->name('news.show');
 // ----------------------------------------------------
+
+// rating ----------------------------------------------------
+Route::resource('/rating', RatingController::class)
+    ->only(['store'])
+    ->names('ratings');
+// ----------------------------------------------------
+
+
 
 // chatbot min
 Route::post('/ai/chat', [AiController::class, 'chat']);
@@ -54,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/news', NewsController::class)->names('admin-news');
     Route::resource('/admin/gallery', GalleryController::class)->names('admin-gallery');
     Route::resource('/admin/inbox', InboxController::class)->names('admin-inbox');
+
+    Route::resource('/admin/rating', RatingController::class)->only(['index', 'destroy'])->names('admin-rating');
 });
 
 // super admin crud to manage admins

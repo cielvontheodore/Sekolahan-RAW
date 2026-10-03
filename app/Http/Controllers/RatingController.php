@@ -12,15 +12,9 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $ratings = Rating::latest()->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('ratings.index', compact('ratings'));
     }
 
     /**
@@ -28,31 +22,18 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'rating' => 'required|integer|between:1,5',
+            'message' => 'nullable|string|max:1000',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rating $rating)
-    {
-        //
-    }
+        Rating::create($validated);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Rating $rating)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Rating $rating)
-    {
-        //
+        return back()->with(
+            'rating_success',
+            'Terima kasih atas rating kamu!'
+        );
     }
 
     /**
@@ -60,6 +41,8 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        $rating->delete();
+
+        return redirect()->route('admin-ratings.index');
     }
 }

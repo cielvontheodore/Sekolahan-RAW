@@ -318,6 +318,65 @@
         </div>
     </section>
 
+    <section class="container py-5" id="rating">
+    <h2>Rating</h2>
+
+    @if (session('rating_success'))
+        <div>
+            {{ session('rating_success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('ratings.store') }}" method="POST">
+        @csrf
+
+        <div>
+            <label for="name">Nama</label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                value="{{ old('name') }}"
+            >
+        </div>
+
+        <div>
+            <label for="rating">Rating</label>
+            <select name="rating" id="rating" required>
+                <option value="">Pilih rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="message">Pesan</label>
+            <textarea
+                name="message"
+                id="message"
+                rows="4"
+            >{{ old('message') }}</textarea>
+        </div>
+
+        <button type="submit">
+            Kirim Rating
+        </button>
+    </form>
+</section>
+
     <footer class="container py-4 border-top border-secondary">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
             <div class="fw-bold d-flex align-items-center gap-2">
