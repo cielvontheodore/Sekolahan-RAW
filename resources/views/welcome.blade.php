@@ -306,7 +306,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                Nara
+                Narra
             </a>
 
             <button
@@ -371,7 +371,7 @@
                         class="lead text-secondary mb-4 px-md-4"
                         style="font-size: 1.1rem; line-height: 1.6;"
                     >
-                        Jelajahi pengalaman di NARA melalui kisah pembelajaran,
+                        Jelajahi pengalaman di Narra melalui kisah pembelajaran,
                         kreativitas, prestasi, dan kebersamaan yang membentuk
                         masa depan setiap individu.
                     </p>
@@ -435,7 +435,7 @@
                         class="text-secondary"
                         style="line-height: 1.7; font-size: 1.05rem;"
                     >
-                        NARA hadir untuk menyediakan pendidikan berstandar
+                        Narra hadir untuk menyediakan pendidikan berstandar
                         tinggi modern. Kami memadukan kemajuan kurikulum
                         teknologi dengan lingkungan belajar yang mendukung.
                         Keterampilan praktis, kreativitas, dan karakter
@@ -767,7 +767,7 @@
 
                         <p class="text-secondary">
                             Berikan rating dan pesan untuk membantu kami
-                            meningkatkan pengalaman di NARA.
+                            meningkatkan pengalaman di Narra.
                         </p>
 
                     </div>
@@ -953,7 +953,7 @@
                             <i class="bi bi-envelope fs-5 text-white-50"></i>
 
                             <span>
-                                admin@nara.sch.id
+                                admin@narra.sch.id
                             </span>
 
                         </div>
@@ -1129,11 +1129,11 @@
             <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
 
                 <div class="fw-bold fs-4 text-white">
-                    Nara
+                    Narra
                 </div>
 
                 <div class="text-white-50">
-                    © {{ date('Y') }} Nara. All rights reserved.
+                    © {{ date('Y') }} Narra. Hak cipta dilindungi undang-undang.
                 </div>
 
             </div>
