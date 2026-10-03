@@ -304,7 +304,7 @@
 
             <div class="login-header text-center">
                 <h1>Masuk Admin</h1>
-                <p>Sistem Administrasi NARRA SMK</p>
+                <p>Sistem Administrasi Narra</p>
             </div>
 
             <!-- Session Status -->
@@ -399,7 +399,7 @@
                 </a>
 
                 <div class="copyright-text mt-3 mt-sm-0">
-                    &copy; {{ date('Y') }} NARRA. Hak cipta dilindungi undang-undang.
+                    &copy; {{ date('Y') }} Narra. Hak cipta dilindungi undang-undang.
                 </div>
             </div>
         </div>
