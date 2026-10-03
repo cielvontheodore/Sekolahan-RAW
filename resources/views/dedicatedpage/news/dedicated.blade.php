@@ -248,6 +248,7 @@
          NAVBAR
     =========================================== -->
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
 
         <div class="container">
@@ -259,19 +260,14 @@
                 Narra
             </a>
 
-
             <button
                 class="navbar-toggler border-0"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-
 
             <div
                 class="collapse navbar-collapse justify-content-end"
@@ -289,7 +285,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a
                             class="nav-link"
@@ -298,7 +293,6 @@
                             About
                         </a>
                     </li>
-
 
                     <li class="nav-item">
                         <a
@@ -309,7 +303,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a
                             class="nav-link active"
@@ -318,7 +311,6 @@
                             News
                         </a>
                     </li>
-
 
                     <li class="nav-item">
                         <a
@@ -338,8 +330,6 @@
                         </a>
                     </li>
 
-
-
                     <li class="nav-item">
                         <a
                             class="nav-link"
@@ -352,10 +342,10 @@
                 </ul>
 
             </div>
-
         </div>
 
     </nav>
+
 
 
     <!-- ==========================================
