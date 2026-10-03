@@ -87,24 +87,44 @@
             display: inline-block;
         }
 
-        /* Navbar */
+       /* Navbar */
+        .navbar {
+            background-color: #f8fafc !important;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
         .navbar-brand {
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.65rem;
             color: var(--bs-primary) !important;
+            letter-spacing: -0.03em;
         }
 
         .nav-link {
             font-weight: 500;
-            color: #64748b;
+            font-size: 0.95rem;
+            color: #64748b !important;
             padding-left: 1.25rem !important;
             padding-right: 1.25rem !important;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
         }
 
-        .nav-link:hover,
+        .nav-link:hover {
+            color: var(--bs-primary) !important;
+        }
+
         .nav-link.active {
-            color: var(--bs-primary);
+            color: var(--bs-primary) !important;
+            font-weight: 600;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
         }
 
         /* Hero */
@@ -303,55 +323,101 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                Narra
-            </a>
+<nav class="navbar navbar-expand-lg sticky-top">
 
-            <button
-                class="navbar-toggler border-0"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="container">
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#home">Home</a>
-                    </li>
+        <a
+            class="navbar-brand"
+            href="{{ url('/') }}"
+        >
+            Narra
+        </a>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
+        <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#programs">Majors</a>
-                    </li>
+        <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+        >
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#news">News</a>
-                    </li>
+            <ul class="navbar-nav">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                    </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link active"
+                        href="#home"
+                    >
+                        Home
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#rating">Rating</a>
-                    </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#about"
+                    >
+                        About
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#programs"
+                    >
+                        Majors
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#news"
+                    >
+                        News
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#gallery"
+                    >
+                        Gallery
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#rating"
+                    >
+                        Rating
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#contact"
+                    >
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
-    </nav>
-
+    </div>
+</nav>
 
     <!-- Hero Section -->
     <section class="hero-section text-center" id="home">

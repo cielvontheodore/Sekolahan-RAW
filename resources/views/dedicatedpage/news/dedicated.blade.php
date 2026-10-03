@@ -236,7 +236,6 @@
             color: var(--bs-primary);
 
             letter-spacing: 0.05em;
-            text-transform: uppercase;
         }
     </style>
 </head>

@@ -1,249 +1,493 @@
 <!DOCTYPE html>
+<html lang="id">
 
-<html lang="id" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Narra - Gallery</title>
+    <title>Narra - Gallery</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<style>
-    html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px;
-    }
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-    body {
-        background-color: #212529;
-    }
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    .gallery-grid {
-        columns: 3 300px;
-        column-gap: 1.5rem;
-    }
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
 
-    .gallery-item {
-        break-inside: avoid;
-        margin-bottom: 1.5rem;
-    }
+    <style>
+        :root {
+            --bs-primary: #2563eb;
+            --bs-primary-hover: #1d4ed8;
 
-    .gallery-card {
-        background: rgba(108, 117, 125, 0.10);
-        border: 0;
-        border-radius: 1rem;
-        overflow: hidden;
-        transition: transform 0.25s ease, background-color 0.25s ease;
-    }
+            --narra-bg: #f8fafc;
+            --narra-card-bg: #ffffff;
+            --narra-text-dark: #0f172a;
+            --narra-text-muted: #64748b;
+            --narra-text-subtle: #94a3b8;
+            --narra-border: #f1f5f9;
+        }
 
-    .gallery-card:hover {
-        transform: translateY(-4px);
-        background: rgba(108, 117, 125, 0.16);
-    }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--narra-bg);
+            color: var(--narra-text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .gallery-card img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
+        /* Navbar */
+        .navbar {
+            background-color: var(--narra-bg) !important;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
 
-    .gallery-content {
-        padding: 1.25rem;
-    }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.65rem;
+            color: var(--bs-primary) !important;
+            letter-spacing: -0.03em;
+        }
 
-    .gallery-title {
-        font-size: 1.05rem;
-    }
-</style>
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--narra-text-muted) !important;
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+            transition: color 0.2s ease;
+        }
 
+        .nav-link:hover {
+            color: var(--bs-primary) !important;
+        }
+
+        .nav-link.active {
+            color: var(--bs-primary) !important;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .category-label {
+            color: var(--bs-primary);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .page-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--narra-text-dark);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* Gallery Card */
+        .gallery-card {
+            background-color: var(--narra-card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -10px rgba(15, 23, 42, 0.08);
+        }
+
+        /* Image */
+        .gallery-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 62.5%;
+            overflow: hidden;
+            background-color: #e2e8f0;
+        }
+
+        .gallery-img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-img-wrapper img {
+            transform: scale(1.03);
+        }
+
+        /* Card Content */
+        .gallery-card-body {
+            padding: 1.5rem 1.25rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .gallery-date {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--narra-text-subtle);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+
+        .gallery-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--narra-text-dark);
+            line-height: 1.35;
+            margin-bottom: 0.65rem;
+            letter-spacing: -0.01em;
+        }
+
+        .gallery-excerpt {
+            font-size: 0.85rem;
+            color: var(--narra-text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Card Link */
+        .gallery-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .gallery-link:hover {
+            color: inherit;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 5rem 1rem;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--narra-text-subtle);
+        }
+
+        /* Footer */
+        .footer-divider {
+            border-top: 1px solid #cbd5e1;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.6;
+        }
+
+        .footer-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--bs-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .copyright-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bs-primary);
+            letter-spacing: 0.05em;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.25rem;
+            }
+
+            .navbar {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-dark text-white">
+<body>
 
-<!-- Navbar -->
-<header class="container py-3 sticky-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 rounded-4 px-3"
-         style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
 
-        <div class="container-fluid px-0">
+        <div class="container">
 
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2"
-               href="{{ url('/') }}">
-                <i class="bi bi-asterisk"></i>
-                Sekolahan
+            <a
+                class="navbar-brand"
+                href="{{ url('/') }}"
+            >
+                Narra
             </a>
 
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav">
+            <button
+                class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end"
-                 id="navbarNav">
+            <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarNav"
+            >
 
-                <ul class="navbar-nav gap-3">
+                <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">
+                        <a
+                            class="nav-link"
+                            href="{{ url('/') }}"
+                        >
                             Home
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/#about') }}">
+                        <a
+                            class="nav-link"
+                            href="{{ url('/#about') }}"
+                        >
                             About
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/#major') }}">
+                        <a
+                            class="nav-link"
+                            href="{{ url('/#programs') }}"
+                        >
                             Majors
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/news') }}">
+                        <a
+                            class="nav-link"
+                            href="{{ route('news') }}"
+                        >
                             News
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/gallery') }}">
+                        <a
+                            class="nav-link active"
+                            href="{{ route('gallery') }}"
+                        >
                             Gallery
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/#contact') }}">
+                        <a
+                            class="nav-link"
+                            href="{{ url('/#rating') }}"
+                        >
+                            Rating
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="{{ url('/#contact') }}"
+                        >
                             Contact
                         </a>
                     </li>
 
                 </ul>
+
             </div>
         </div>
+
     </nav>
-</header>
 
 
-<!-- Gallery Header -->
-<main class="container py-5">
+    <!-- Main -->
+    <main class="container mb-5">
 
-    <section class="text-center py-4 mb-5">
+        <!-- Page Header -->
+        <header class="page-header">
 
-        <span class="badge rounded-pill bg-secondary bg-opacity-25 text-light border border-secondary px-3 py-2 mb-3">
-            <i class="bi bi-images me-1"></i>
-            School Gallery
-        </span>
+            <span class="category-label">
+                GALERI SEKOLAH
+            </span>
 
-        <h1 class="display-4 fw-bold mb-3">
-            Moments at Sekolahan
-        </h1>
+            <h1 class="page-title">
+                Galeri Kegiatan
+            </h1>
 
-        <p class="text-secondary mx-auto mb-0"
-           style="max-width: 650px;">
-            Explore moments, activities, achievements, and memories
-            from our school community.
-        </p>
-
-    </section>
+        </header>
 
 
-    <!-- Gallery -->
-    <section>
+        <!-- Gallery Grid -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
-        @if ($gallery->count())
-        <div class="gallery-grid">
+            @forelse ($gallery as $item)
 
-            @foreach ($gallery as $item)
+                <div class="col">
 
-                <article class="gallery-item">
-                    <div class="gallery-card">
-                        <a href="{{ route('gallery.show', $item) }}">
+                    <a
+                        href="{{ route('gallery.show', $item) }}"
+                        class="gallery-link"
+                    >
 
-                        @if ($item->image)
-                            <img
-                                src="{{ asset('storage/' . $item->image) }}"
-                                alt="{{ $item->title }}"
-                                loading="lazy"
-                            >
-                        @else
-                            <div class="d-flex align-items-center justify-content-center bg-secondary bg-opacity-25"
-                                 style="height: 250px;">
-                                <i class="bi bi-image fs-1 text-secondary"></i>
-                            </div>
-                        @endif
+                        <article class="gallery-card">
 
-                        <div class="gallery-content">
+                            <!-- Image -->
+                            <div class="gallery-img-wrapper">
 
-                            <div class="text-secondary small mb-1">
-                                {{ $item->created_at->format('F d, Y') }}
+                                @if ($item->image)
+
+                                    <img
+                                        src="{{ asset('storage/' . $item->image) }}"
+                                        alt="{{ $item->title }}"
+                                        loading="lazy"
+                                    >
+
+                                @else
+
+                                    <div class="w-100 h-100 position-absolute top-0 start-0 d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-images fs-1 text-secondary"></i>
+                                    </div>
+
+                                @endif
+
                             </div>
 
-                            <h5 class="gallery-title fw-bold mb-2">
-                                {{ $item->title }}
-                            </h5>
 
-                            @if ($item->description)
-                                <p class="text-secondary small mb-0">
-                                    {{ Str::limit($item->description, 140) }}
-                                </p>
-                            @endif
+                            <!-- Content -->
+                            <div class="gallery-card-body">
 
-                        </div>
+                                <time class="gallery-date">
+
+                                    {{ $item->created_at->format('d M Y') }}
+
+                                </time>
+
+
+                                <h2 class="gallery-title">
+
+                                    {{ $item->title }}
+
+                                </h2>
+
+
+                                @if ($item->description)
+
+                                    <p class="gallery-excerpt">
+
+                                        {{ $item->description }}
+
+                                    </p>
+
+                                @endif
+
+                            </div>
+
+                        </article>
+
+                    </a>
+
+                </div>
+
+            @empty
+
+                <!-- Empty -->
+                <div class="col-12">
+
+                    <div class="empty-state text-center">
+
+                        <i class="bi bi-images"></i>
+
+                        <h5 class="fw-bold mt-3">
+                            Belum Ada Galeri
+                        </h5>
+
+                        <p class="text-secondary small mb-0">
+                            Belum ada foto atau kegiatan yang tersedia saat ini.
+                        </p>
 
                     </div>
-                </article>
 
-            @endforeach
+                </div>
+
+            @endforelse
 
         </div>
-    @else
-
-    <div class="text-center py-5">
-        <i class="bi bi-images fs-1 text-secondary"></i>
-
-        <h5 class="fw-bold mt-3">
-            No gallery items yet
-        </h5>
-
-        <p class="text-secondary small mb-0">
-            Check back later for new photos and memories.
-        </p>
-    </div>
-
-@endif
-
-    </section>
-
-</main>
 
 
-<!-- Footer -->
-<footer class="container py-4 border-top border-secondary">
+        <!-- Footer -->
+        <hr class="footer-divider">
 
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <footer
+            class="d-flex flex-column flex-sm-row justify-content-between align-items-center pb-4"
+        >
 
-        <div class="fw-bold d-flex align-items-center gap-2">
-            <i class="bi bi-asterisk"></i>
-            Sekolahan
-        </div>
+            <a
+                href="{{ url('/') }}"
+                class="footer-brand text-decoration-none"
+            >
+                Narra
+            </a>
 
-        <p class="text-secondary small mb-0">
-            &copy; 2024 Sekolahan Academic Institution.
-            All rights reserved.
-        </p>
+            <div class="copyright-text mt-3 mt-sm-0">
 
-    </div>
+                &copy; {{ date('Y') }} Narra. Hak cipta dilindungi undang-undang.
 
-</footer>
+            </div>
+
+        </footer>
+
+    </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
 </body>
 </html>
