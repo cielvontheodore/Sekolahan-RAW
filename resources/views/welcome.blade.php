@@ -1,420 +1,1191 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <!DOCTYPE html>
-<html lang="id" data-bs-theme="dark">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Narra - Empowering Future Leaders</title>
+    <title>Narra - Setiap Siswa Punya Cerita</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
+        :root {
+            --bs-primary: #2563eb;
+            --bs-primary-hover: #1d4ed8;
+            --bs-body-font-family: 'Inter', sans-serif;
+            --bs-body-color: #334155;
+            --bs-heading-color: #0f172a;
+        }
+
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 100px;
         }
+
+        body {
+            font-family: var(--bs-body-font-family);
+            color: var(--bs-body-color);
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            padding: 0.6rem 1.4rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--bs-primary-hover);
+            border-color: var(--bs-primary-hover);
+        }
+
+        .btn-outline-custom {
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            background-color: #ffffff;
+            padding: 0.6rem 1.4rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: #f8fafc;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
+        .text-primary-custom {
+            color: var(--bs-primary) !important;
+        }
+
+        .badge-soft-primary {
+            background-color: #eff6ff;
+            color: var(--bs-primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.8rem;
+            border-radius: 2rem;
+            display: inline-block;
+        }
+
+        /* Navbar */
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--bs-primary) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #64748b;
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--bs-primary);
+        }
+
+        /* Hero */
+        .hero-section {
+            padding: 5rem 0 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 3rem 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--bs-primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        .divider-vertical {
+            border-right: 1px solid #e2e8f0;
+        }
+
+        /* Feature Cards */
+        .card-feature {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 0.6rem;
+            background-color: #dbeafe;
+            color: var(--bs-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* News Cards */
+        .card-news {
+            border: 1px solid #f1f5f9;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+
+        .card-news:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-news img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(15, 23, 42, 0.85) 0%,
+                rgba(15, 23, 42, 0) 60%
+            );
+            display: flex;
+            align-items: flex-end;
+            padding: 1.25rem;
+            color: white;
+        }
+
+        /* Contact */
+        .contact-section {
+            background-color: #1e52f0;
+            color: white;
+            padding: 5rem 0 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            color: var(--bs-body-color);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control,
+        .form-select {
+            padding: 0.75rem 1rem;
+            border-color: #cbd5e1;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--bs-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Rating */
+        .rating-section {
+            background-color: #f8fafc;
+        }
+
+        .rating-card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .rating-stars {
+            color: #f59e0b;
+        }
+
+        /* Footer */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            margin-top: 4rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
+            .divider-vertical {
+                border-right: none;
+            }
+        }
     </style>
-
 </head>
-<body class="bg-dark text-white">
 
-    <header class="container py-3 sticky-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-opacity-75 rounded-4 px-3"
-         style="backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-            <div class="container-fluid px-0">
-                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-asterisk"></i> Sekolahan
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav gap-3">
-                        <li class="nav-item"><a class="nav-link active" href="#sekolahan">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#major">Majors</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('news') }}">News</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                Nara
+            </a>
+
+            <button
+                class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Majors</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">News</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rating">Rating</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center" id="home">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8">
+
+                    <span class="badge-soft-primary mb-3">
+                        Pendidikan untuk Masa Depan
+                    </span>
+
+                    <h1 class="hero-title mb-4">
+                        Setiap Siswa Punya Cerita.
+                    </h1>
+
+                    <p
+                        class="lead text-secondary mb-4 px-md-4"
+                        style="font-size: 1.1rem; line-height: 1.6;"
+                    >
+                        Jelajahi pengalaman di NARA melalui kisah pembelajaran,
+                        kreativitas, prestasi, dan kebersamaan yang membentuk
+                        masa depan setiap individu.
+                    </p>
+
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#programs" class="btn btn-primary">
+                            Mulai Jelajahi
+                        </a>
+
+                        <a href="#about" class="btn btn-outline-custom">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </section>
 
-    <section class="container py-5" id="sekolahan">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-6">
-                <span class="badge rounded-pill bg-secondary bg-opacity-25 text-light border border-secondary px-3 py-2 mb-3">
-                    <i class="bi bi-circle-fill text-success me-1 fs-6"></i> Admission for 2024/2025 Open
+
+    <!-- Stats Section -->
+    <section class="stats-section my-4">
+        <div class="container">
+            <div class="row text-center gy-4">
+
+                <div class="col-md-4 divider-vertical">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Tingkat Kelulusan</div>
+                </div>
+
+                <div class="col-md-4 divider-vertical">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Program & Komunitas</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="stat-value">20:1</div>
+                    <div class="stat-label">Rasio Guru & Siswa</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="py-5 my-4 text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+
+                    <span class="badge-soft-primary mb-3">
+                        Tentang Kami
+                    </span>
+
+                    <h2 class="fw-bold mb-4" style="font-size: 2.25rem;">
+                       Membentuk Masa Depan melalui Pendidikan
+                    </h2>
+
+                    <p
+                        class="text-secondary"
+                        style="line-height: 1.7; font-size: 1.05rem;"
+                    >
+                        NARA hadir untuk menyediakan pendidikan berstandar
+                        tinggi modern. Kami memadukan kemajuan kurikulum
+                        teknologi dengan lingkungan belajar yang mendukung.
+                        Keterampilan praktis, kreativitas, dan karakter
+                        dibangun bersama untuk membantu menghadapi dunia
+                        yang terus berkembang.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-5 bg-light-subtle">
+        <div class="container">
+
+            <div class="text-center mb-5">
+                <span class="badge-soft-primary mb-2">
+                    Program Keahlian
                 </span>
-                <h1 class="display-4 fw-bold mb-3">Empowering Future Leaders for a Changing World</h1>
-                <p class="text-secondary mb-4 fs-6">
-                    Experience academic excellence that transcends borders. Join a diverse community of innovators and thinkers at the world's leading global educational institution.
-                </p>
-                <div class="d-flex gap-3">
-                    <a href="#" class="btn btn-light px-4 py-2 fw-semibold">Apply Now</a>
-                    <a href="#" class="btn btn-outline-secondary text-white px-4 py-2 fw-semibold">Achievements</a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="rounded-4 overflow-hidden shadow">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Students studying" class="img-fluid w-100 object-fit-cover" style="max-height: 400px;">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="container py-4 my-4 border-top border-bottom border-secondary">
-        <div class="row text-center gy-3">
-            <div class="col-md-4">
-                <h2 class="fw-bold mb-0 display-6">98%</h2>
-                <p class="text-secondary small mb-0">Graduation Rate</p>
-            </div>
-            <div class="col-md-4 border-start border-end border-secondary">
-                <h2 class="fw-bold mb-0 display-6">50+</h2>
-                <p class="text-secondary small mb-0">Global Programs</p>
-            </div>
-            <div class="col-md-4">
-                <h2 class="fw-bold mb-0 display-6">20:1</h2>
-                <p class="text-secondary small mb-0">Student Ratio</p>
-            </div>
-        </div>
-    </section>
+                <h2 class="fw-bold fs-2">
+                    Temukan Bidangmu. Bangun Ceritamu.
+                </h2>
 
-    <section class="container text-center py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8" id="about">
-                <h2 class="fw-bold mb-3">Shaping the Future of Learning</h2>
-                <p class="text-secondary small">
-                    ACADEMY is a global leader in innovative education. We empower students to navigate and thrive in a rapidly changing world through rigorous, inclusive, and forward-thinking academic programs that foster critical thinking, practical skills, and ethical leadership.
+                <p class="text-secondary">
+                    Pilih alur pembelajaran yang sesuai dengan minat
+                    dan potensi masa depan digital Anda.
                 </p>
             </div>
-        </div>
-    </section>
 
-    <section class="container py-5" id="major">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Vocational Majors</h2>
-            <p class="text-secondary small">Hands-on programs designed to prepare you for the real-world demands of industry-leading fields.</p>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 bg-secondary bg-opacity-10 border-0 p-4 text-white">
-                    <div class="mb-3">
-                        <i class="bi bi-code-slash fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold">Software Engineering</h5>
-                    <p class="text-secondary small mb-0">Comprehensive training in modern software development methodologies, algorithms, and system design.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 bg-secondary bg-opacity-10 border-0 p-4 text-white">
-                    <div class="mb-3">
-                        <i class="bi bi-router fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold">Network Engineering</h5>
-                    <p class="text-secondary small mb-0">In-depth study of networks, architecture, security, protocols, and infrastructure design for enterprise systems.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 bg-secondary bg-opacity-10 border-0 p-4 text-white">
-                    <div class="mb-3">
-                        <i class="bi bi-cpu fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold">Hardware Engineering</h5>
-                    <p class="text-secondary small mb-0">From microcontrollers to a wide range of computer systems, design, testing, and troubleshooting hardware.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="row g-4">
 
-<section class="container py-5" id="news">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold mb-0">News & Articles</h2>
+                <!-- Program 1 -->
+                <div class="col-md-4">
+                    <div class="card-feature">
 
-    <a href="{{ route('news') }}"
-       class="text-white text-decoration-none small d-flex align-items-center gap-1">
-        See more
-        <i class="bi bi-arrow-right"></i>
-    </a>
-
-    </div>
-
-
-    <div class="row g-4">
-        @forelse ($news as $item)
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-
-                    @if ($item->image)
-                        <img
-                            src="{{ asset('storage/' . $item->image) }}"
-                            alt="{{ $item->title }}"
-                            class="w-100"
-                            style="height: 220px; object-fit: cover;"
-                        >
-                    @else
-                        <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                            <i class="bi bi-journal-bookmark fs-1 text-secondary"></i>
+                        <div class="icon-box">
+                            <i class="bi bi-code-slash"></i>
                         </div>
-                    @endif
 
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">
-                            {{ $item->created_at->format('F d, Y') }}
-                        </span>
-
-                        <h5 class="card-title fw-bold mt-1">
-                            {{ $item->title }}
+                        <h5 class="fw-bold mb-2">
+                            Software Engineering (RPL)
                         </h5>
 
-                        @if ($item->description)
-                            <p class="card-text text-secondary small">
-                                {{ Str::limit($item->description, 120) }}
-                            </p>
-                        @endif
+                        <p class="text-secondary small mb-0">
+                            Fokus pada rekayasa perangkat lunak,
+                            pemrograman web & mobile, arsitektur sistem
+                            modern, serta algoritma tingkat lanjut.
+                        </p>
+
                     </div>
-
                 </div>
-            </div>
-        @empty
 
-            <div class="col-12">
-                <div class="text-center py-5">
-                    <i class="bi bi-journal-x fs-1 text-secondary"></i>
-                    <p class="text-secondary mt-3 mb-0">
-                        No news available yet.
-                    </p>
-                </div>
-            </div>
+                <!-- Program 2 -->
+                <div class="col-md-4">
+                    <div class="card-feature">
 
-        @endforelse
-    </div>
-</section>
-
-    <section class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold mb-0" id="gallery">Gallery</h2>
-
-    <a href="{{ route('gallery') }}"
-       class="text-white text-decoration-none small d-flex align-items-center gap-1">
-        See more
-        <i class="bi bi-arrow-right"></i>
-    </a>
-
-    </div>
-
-
-    <div class="row g-4">
-        @forelse ($gallery as $item)
-            <div class="col-md-4">
-                <div class="card bg-secondary bg-opacity-10 border-0 text-white overflow-hidden h-100">
-
-                    @if ($item->image)
-                        <img
-                            src="{{ asset('storage/' . $item->image) }}"
-                            alt="{{ $item->title }}"
-                            class="w-100"
-                            style="height: 220px; object-fit: cover;"
-                        >
-                    @else
-                        <div class="bg-secondary bg-opacity-25 p-5 text-center">
-                            <i class="bi bi-image fs-1 text-secondary"></i>
+                        <div class="icon-box">
+                            <i class="bi bi-cpu"></i>
                         </div>
-                    @endif
 
-                    <div class="card-body p-4">
-                        <span class="text-secondary small">
-                            {{ $item->created_at->format('F d, Y') }}
-                        </span>
-
-                        <h5 class="card-title fw-bold mt-1">
-                            {{ $item->title }}
+                        <h5 class="fw-bold mb-2">
+                            AI & Machine Learning
                         </h5>
 
-                        @if ($item->description)
-                            <p class="card-text text-secondary small">
-                                {{ Str::limit($item->description, 120) }}
-                            </p>
-                        @endif
+                        <p class="text-secondary small mb-0">
+                            Pengembangan kecerdasan buatan, pemrosesan
+                            bahasa alami (NLP), data science, serta
+                            implementasi otomasi cerdas.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="col-md-4">
+                    <div class="card-feature">
+
+                        <div class="icon-box">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+
+                        <h5 class="fw-bold mb-2">
+                            Network & Ethical Hacking
+                        </h5>
+
+                        <p class="text-secondary small mb-0">
+                            Infrastruktur cloud computing, jaringan
+                            komputer, keamanan siber, enkripsi data,
+                            dan analisis kerentanan sistem.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- News Section -->
+    <section id="news" class="py-5">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <span class="badge-soft-primary mb-2">
+                        Kabar Terbaru
+                    </span>
+
+                    <h2 class="fw-bold mb-0 fs-2">
+                        Berita Terbaru
+                    </h2>
+                </div>
+
+                <a
+                    href="{{ route('news') }}"
+                    class="text-primary-custom text-decoration-none fw-semibold small"
+                >
+                    Lihat Semua Berita
+                    <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="row g-4">
+
+                @forelse ($news as $item)
+
+                    <div class="col-md-6 col-lg-4">
+                        <a
+                            href="{{ route('news.show', $item) }}"
+                            class="text-decoration-none"
+                        >
+                            <div class="card-news">
+
+                                @if ($item->image)
+
+                                    <img
+                                        src="{{ asset('storage/' . $item->image) }}"
+                                        alt="{{ $item->title }}"
+                                    >
+
+                                @else
+
+                                    <div
+                                        class="bg-light d-flex align-items-center justify-content-center"
+                                        style="height: 180px;"
+                                    >
+                                        <i class="bi bi-journal-bookmark fs-1 text-secondary"></i>
+                                    </div>
+
+                                @endif
+
+                                <div class="p-3">
+
+                                    <div class="news-date mb-1">
+                                        {{ $item->created_at->format('d M Y') }}
+                                    </div>
+
+                                    <h6 class="fw-bold text-dark mb-2">
+                                        {{ $item->title }}
+                                    </h6>
+
+                                    @if ($item->description)
+
+                                        <p class="text-secondary small mb-0">
+                                            {{ Str::limit($item->description, 120) }}
+                                        </p>
+
+                                    @endif
+
+                                </div>
+
+                            </div>
+                        </a>
                     </div>
 
-                </div>
-            </div>
-        @empty
+                @empty
 
-            <div class="col-12">
-                <div class="text-center py-5">
-                    <i class="bi bi-images fs-1 text-secondary"></i>
-                    <p class="text-secondary mt-3 mb-0">
-                        No gallery items available yet.
+                    <div class="col-12">
+                        <div class="text-center py-5">
+
+                            <i class="bi bi-journal-x fs-1 text-secondary"></i>
+
+                            <p class="text-secondary mt-3 mb-0">
+                                Belum ada berita.
+                            </p>
+
+                        </div>
+                    </div>
+
+                @endforelse
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-end mb-4">
+
+                <div>
+                    <span class="badge-soft-primary mb-2">
+                        Dokumentasi
+                    </span>
+
+                    <h2 class="fw-bold mb-1 fs-2">
+                        Galeri Terkini
+                    </h2>
+
+                    <p class="text-secondary small mb-0">
+                        Berbagai momen kebersamaan, semangat belajar,
+                        dan pengalaman berharga bersama.
                     </p>
                 </div>
+
+                <a
+                    href="{{ route('gallery') }}"
+                    class="text-primary-custom text-decoration-none fw-semibold small"
+                >
+                    Galeri Lengkap
+                    <i class="bi bi-grid-fill ms-1"></i>
+                </a>
+
             </div>
 
-        @endforelse
-    </div>
-</section>
 
-    <section class="container py-5" id="contact">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-6">
-                <h2 class="fw-bold display-6 mb-3">Start Your Academic Journey</h2>
-                <p class="text-secondary small mb-4">
-                    Join our community of innovators. Apply online for the upcoming academic year today.
-                </p>
-                <div class="d-flex gap-2 align-items-center text-secondary small">
-                    <i class="bi bi-globe"></i>
-                    <span>Accredited Global Institution</span>
-                </div>
+            <div class="row g-3">
+
+                @forelse ($gallery as $item)
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <a
+                            href="{{ route('gallery.show', $item) }}"
+                            class="text-decoration-none"
+                        >
+
+                            <div class="card-news">
+
+                                @if ($item->image)
+
+                                    <img
+                                        src="{{ asset('storage/' . $item->image) }}"
+                                        alt="{{ $item->title }}"
+                                    >
+
+                                @else
+
+                                    <div
+                                        class="bg-light d-flex align-items-center justify-content-center"
+                                        style="height: 180px;"
+                                    >
+                                        <i class="bi bi-image fs-1 text-secondary"></i>
+                                    </div>
+
+                                @endif
+
+                                <div class="p-3">
+
+                                    <div class="news-date mb-1">
+                                        {{ $item->created_at->format('d M Y') }}
+                                    </div>
+
+                                    <h6 class="fw-bold text-dark mb-2">
+                                        {{ $item->title }}
+                                    </h6>
+
+                                    @if ($item->description)
+
+                                        <p class="text-secondary small mb-0">
+                                            {{ Str::limit($item->description, 120) }}
+                                        </p>
+
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                @empty
+
+                    <div class="col-12">
+                        <div class="text-center py-5">
+
+                            <i class="bi bi-images fs-1 text-secondary"></i>
+
+                            <p class="text-secondary mt-3 mb-0">
+                                Belum ada galeri.
+                            </p>
+
+                        </div>
+                    </div>
+
+                @endforelse
+
             </div>
-            <div class="col-lg-6">
-                <div class="card bg-secondary bg-opacity-10 border-0 p-4">
-                    <form action="{{ route('contact.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small">FULL NAME</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Seseorang" name="name">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small">EMAIL ADDRESS</label>
-                            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Seseorang@example.com" name="email">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small">PROGRAM OF INTEREST</label>
-                            <select class="form-select bg-dark text-white border-secondary" name="program">
-                                <option selected>Select a program</option>
-                                <option value="1">Software Engineering</option>
-                                <option value="2">Network Engineering</option>
-                                <option value="3">Hardware Engineering</option>
-                            </select>
-                        </div>
+        </div>
+    </section>
+
+
+    <!-- Rating Section -->
+    <section class="rating-section py-5" id="rating">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+
+                    <div class="text-center mb-4">
+
+                        <span class="badge-soft-primary mb-2">
+                            Pendapat Anda
+                        </span>
+
+                        <h2 class="fw-bold">
+                            Bagikan Pengalamanmu
+                        </h2>
+
+                        <p class="text-secondary">
+                            Berikan rating dan pesan untuk membantu kami
+                            meningkatkan pengalaman di NARA.
+                        </p>
+
+                    </div>
+
+
+                    <div class="rating-card">
+
+                        @if (session('rating_success'))
+
+                            <div class="alert alert-success">
+                                {{ session('rating_success') }}
+                            </div>
+
+                        @endif
+
+
+                        @if ($errors->any())
+
+                            <div class="alert alert-danger">
+
+                                <ul class="mb-0">
+
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
+                        @endif
+
+
+                        <form action="{{ route('rating.store') }}" method="POST">
+
+                            @csrf
+
                             <div class="mb-3">
-                                <label class="form-label text-secondary small">MESSAGE</label>
+
+                                <label
+                                    for="name"
+                                    class="form-label fw-semibold"
+                                >
+                                    Nama
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="Nama Anda"
+                                    value="{{ old('name') }}"
+                                >
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="rating"
+                                    class="form-label fw-semibold"
+                                >
+                                    Rating
+                                </label>
+
+                                <select
+                                    name="rating"
+                                    id="rating"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Pilih rating
+                                    </option>
+
+                                    <option value="1" {{ old('rating') == 1 ? 'selected' : '' }}>
+                                        1 - Sangat Kurang
+                                    </option>
+
+                                    <option value="2" {{ old('rating') == 2 ? 'selected' : '' }}>
+                                        2 - Kurang
+                                    </option>
+
+                                    <option value="3" {{ old('rating') == 3 ? 'selected' : '' }}>
+                                        3 - Cukup
+                                    </option>
+
+                                    <option value="4" {{ old('rating') == 4 ? 'selected' : '' }}>
+                                        4 - Baik
+                                    </option>
+
+                                    <option value="5" {{ old('rating') == 5 ? 'selected' : '' }}>
+                                        5 - Sangat Baik
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label
+                                    for="message"
+                                    class="form-label fw-semibold"
+                                >
+                                    Pesan
+                                </label>
+
                                 <textarea
-                                    class="form-control bg-dark text-white border-secondary"
-                                    placeholder="Write your message..."
+                                    name="message"
+                                    id="message"
+                                    rows="4"
+                                    class="form-control"
+                                    placeholder="Tuliskan pesan Anda..."
+                                >{{ old('message') }}</textarea>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100"
+                            >
+                                <i class="bi bi-send me-2"></i>
+                                Kirim Rating
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact Section -->
+    <footer id="contact" class="contact-section">
+
+        <div class="container">
+
+            <div class="row gy-5 align-items-center">
+
+                <!-- Contact Info -->
+                <div class="col-lg-6">
+
+                    <h2 class="fw-bold display-6 mb-3 text-white">
+                        Kontak Kami
+                    </h2>
+
+                    <p
+                        class="text-white-50 mb-4"
+                        style="max-width: 480px;"
+                    >
+                        Sampaikan pertanyaan atau kunjungi kami langsung
+                        di kampus untuk mendapatkan informasi lengkap.
+                    </p>
+
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <i class="bi bi-geo-alt fs-5 text-white-50"></i>
+
+                            <span>
+                                Jl. Edukasi No. 12, Jakarta Selatan
+                            </span>
+
+                        </div>
+
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <i class="bi bi-envelope fs-5 text-white-50"></i>
+
+                            <span>
+                                admin@nara.sch.id
+                            </span>
+
+                        </div>
+
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <i class="bi bi-telephone fs-5 text-white-50"></i>
+
+                            <span>
+                                +62 812-3456-7890
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+
+                    <div class="contact-card">
+
+                        <form
+                            action="{{ route('contact.store') }}"
+                            method="POST"
+                        >
+
+                            @csrf
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="nama"
+                                    class="form-label small fw-semibold text-secondary"
+                                >
+                                    Nama Lengkap
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nama"
+                                    name="name"
+                                    placeholder="Nama Anda"
+                                    value="{{ old('name') }}"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="email"
+                                    class="form-label small fw-semibold text-secondary"
+                                >
+                                    Alamat Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    placeholder="nama@email.com"
+                                    value="{{ old('email') }}"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="kategori"
+                                    class="form-label small fw-semibold text-secondary"
+                                >
+                                    Program Keahlian
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="kategori"
+                                    name="program"
+                                    required
+                                >
+
+                                    <option value="" selected disabled>
+                                        Pilih Program
+                                    </option>
+
+                                    <option
+                                        value="Software Engineering"
+                                        {{ old('program') == 'Software Engineering' ? 'selected' : '' }}
+                                    >
+                                        Software Engineering
+                                    </option>
+
+                                    <option
+                                        value="Network Engineering"
+                                        {{ old('program') == 'Network Engineering' ? 'selected' : '' }}
+                                    >
+                                        Network Engineering
+                                    </option>
+
+                                    <option
+                                        value="Hardware Engineering"
+                                        {{ old('program') == 'Hardware Engineering' ? 'selected' : '' }}
+                                    >
+                                        Hardware Engineering
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label
+                                    for="pesan"
+                                    class="form-label small fw-semibold text-secondary"
+                                >
+                                    Pesan
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="pesan"
                                     name="message"
                                     rows="4"
-                                ></textarea>
+                                    placeholder="Tuliskan pesan Anda..."
+                                    required
+                                >{{ old('message') }}</textarea>
+
                             </div>
 
-                            <div class="w-100">
-                                <div class="cf-turnstile"
-                                     data-sitekey="{{ config('services.turnstile.site_key') }}"
-                                     data-theme="dark">
-                                </div>
+
+                            <div class="w-100 mb-3">
+
+                                <div
+                                    class="cf-turnstile"
+                                    data-sitekey="{{ config('services.turnstile.site_key') }}"
+                                    data-theme="light"
+                                ></div>
+
                             </div>
 
-                            <button type="submit" class="btn btn-secondary w-100 fw-bold mt-2 py-2">
-                                SUBMIT APPLICATION
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100 py-2 fw-semibold"
+                            >
+                                <i class="bi bi-send me-2"></i>
+                                Kirim Pesan
                             </button>
-                    </form>
+
+                        </form>
+
+                    </div>
+
                 </div>
+
             </div>
-        </div>
-    </section>
 
-    <section class="container py-5" id="rating">
-    <h2>Rating</h2>
 
-    @if (session('rating_success'))
-        <div>
-            {{ session('rating_success') }}
-        </div>
-    @endif
+            <!-- Footer Bottom -->
+            <div class="footer-bottom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
 
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+                <div class="fw-bold fs-4 text-white">
+                    Nara
+                </div>
 
-    <form action="{{ route('ratings.store') }}" method="POST">
-        @csrf
+                <div class="text-white-50">
+                    © {{ date('Y') }} Nara. All rights reserved.
+                </div>
 
-        <div>
-            <label for="name">Nama</label>
-            <input
-                type="text"
-                name="name"
-                id="name"
-                value="{{ old('name') }}"
-            >
-        </div>
-
-        <div>
-            <label for="rating">Rating</label>
-            <select name="rating" id="rating" required>
-                <option value="">Pilih rating</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="message">Pesan</label>
-            <textarea
-                name="message"
-                id="message"
-                rows="4"
-            >{{ old('message') }}</textarea>
-        </div>
-
-        <button type="submit">
-            Kirim Rating
-        </button>
-    </form>
-</section>
-
-    <footer class="container py-4 border-top border-secondary">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <div class="fw-bold d-flex align-items-center gap-2">
-                <i class="bi bi-asterisk"></i> Sekolahan
             </div>
-            <p class="text-secondary small mb-0">&copy; 2024 Sekolahan Academic Institution. All rights reserved.</p>
+
         </div>
+
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
 
-        if (!href || href === '#') return;
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        const target = document.querySelector(href);
 
-        if (!target) return;
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-        e.preventDefault();
-        e.stopPropagation();
+            link.addEventListener('click', function (e) {
 
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight + 15 : 0;
+                const href = this.getAttribute('href');
 
-        const targetPosition =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            headerHeight;
+                if (!href || href === '#') {
+                    return;
+                }
 
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
+                const target = document.querySelector(href);
+
+                if (!target) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                const header = document.querySelector('.navbar');
+                const headerHeight = header
+                    ? header.offsetHeight + 15
+                    : 0;
+
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+            });
+
         });
-    });
-});
-</script>
+    </script>
+
 </body>
 </html>

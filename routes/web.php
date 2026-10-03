@@ -36,7 +36,7 @@ Route::get('/news/{news}', [HomeController::class, 'newsShow'])
 // rating ----------------------------------------------------
 Route::resource('/rating', RatingController::class)
     ->only(['store'])
-    ->names('ratings');
+    ->names('rating');
 // ----------------------------------------------------
 
 
@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/gallery', GalleryController::class)->names('admin-gallery');
     Route::resource('/admin/inbox', InboxController::class)->names('admin-inbox');
 
-    Route::resource('/admin/rating', RatingController::class)->only(['index', 'destroy'])->names('admin-rating');
+    Route::resource('/admin/rating', RatingController::class)->names('admin-rating');
 });
 
 // super admin crud to manage admins

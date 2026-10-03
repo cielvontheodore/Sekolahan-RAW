@@ -14,7 +14,15 @@ class RatingController extends Controller
     {
         $ratings = Rating::latest()->paginate(10);
 
-        return view('ratings.index', compact('ratings'));
+        return view('ratingdir.index', compact('ratings'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('ratingdir.create');
     }
 
     /**
@@ -37,12 +45,44 @@ class RatingController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function show(Rating $rating)
+    {
+        return view('ratingdir.show', compact('rating'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Rating $rating)
+    {
+        return view('ratingdir.edit', compact('rating'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Rating $rating)
+    {
+        $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
+            'rating' => 'required|integer|between:1,5',
+            'message' => 'nullable|string|max:1000',
+        ]);
+
+        $rating->update($validated);
+
+        return redirect()->route('admin-rating.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Rating $rating)
     {
         $rating->delete();
 
-        return redirect()->route('admin-ratings.index');
+        return redirect()->route('admin-rating.index');
     }
 }
