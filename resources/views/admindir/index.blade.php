@@ -28,7 +28,7 @@
         :root {
             --primary-blue: #2b66f6;
             --primary-blue-hover: #1e52d8;
-            --light-bg: #f8fafd;
+            --light-bg: #f8f9fa;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
@@ -49,7 +49,9 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* =========================
+           Sidebar
+        ========================= */
 
         .sidebar {
             width: 260px;
@@ -58,12 +60,12 @@
             top: 0;
             left: 0;
             background-color: #ffffff;
-            border-right: 1px solid var(--border-color);
+            border-right: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 1.5rem 1.25rem;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -75,6 +77,10 @@
             display: inline-block;
             margin-bottom: 2rem;
             padding-left: 0.75rem;
+        }
+
+        .brand-logo:hover {
+            color: var(--primary-blue-hover);
         }
 
         .nav-link-custom {
@@ -105,12 +111,16 @@
             color: #ffffff;
         }
 
-        /* Admin Profile */
+        .nav-link-custom.active:hover {
+            background-color: var(--primary-blue-hover);
+            color: #ffffff;
+        }
+
+        /* =========================
+           Admin Profile
+        ========================= */
 
         .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             padding-top: 1rem;
             border-top: 1px solid #f1f5f9;
         }
@@ -140,13 +150,77 @@
             color: #64748b;
         }
 
-        /* Main */
+        /* =========================
+           Logout
+        ========================= */
+
+        .logout-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 9px;
+            background-color: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* =========================
+           Mobile Navbar
+        ========================= */
+
+        .mobile-navbar {
+            display: none;
+        }
+
+        .mobile-navbar .brand-logo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-toggler {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.65rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(43, 102, 246, 0.15);
+        }
+
+        .mobile-menu {
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .mobile-profile {
+            border-top: 1px solid #f1f5f9;
+            margin-top: 0.75rem;
+            padding-top: 1rem;
+        }
+
+        /* =========================
+           Main
+        ========================= */
 
         .main-wrapper {
             margin-left: 260px;
             padding: 2.25rem 2.5rem;
             min-height: 100vh;
         }
+
+        /* =========================
+           Header
+        ========================= */
 
         .page-title {
             font-weight: 800;
@@ -161,7 +235,9 @@
             font-size: 0.95rem;
         }
 
-        /* Add Button */
+        /* =========================
+           Add Button
+        ========================= */
 
         .btn-top-add {
             background-color: var(--primary-blue);
@@ -184,7 +260,9 @@
             box-shadow: 0 4px 12px rgba(43, 102, 246, 0.25);
         }
 
-        /* Search */
+        /* =========================
+           Search
+        ========================= */
 
         .search-container {
             position: relative;
@@ -223,7 +301,9 @@
             box-shadow: 0 0 0 3px rgba(43, 102, 246, 0.12);
         }
 
-        /* Table */
+        /* =========================
+           Table
+        ========================= */
 
         .table-card {
             background-color: #ffffff;
@@ -270,7 +350,9 @@
             color: #64748b;
         }
 
-        /* Role Badge */
+        /* =========================
+           Role Badge
+        ========================= */
 
         .role-badge {
             display: inline-flex;
@@ -291,7 +373,9 @@
             color: #475569;
         }
 
-        /* Actions */
+        /* =========================
+           Actions
+        ========================= */
 
         .action-btn-group {
             display: flex;
@@ -331,7 +415,9 @@
             text-decoration: underline;
         }
 
-        /* Empty State */
+        /* =========================
+           Empty State
+        ========================= */
 
         .empty-state {
             padding: 4rem 1.5rem;
@@ -363,23 +449,41 @@
             margin-bottom: 1.25rem;
         }
 
-        /* Mobile */
+        /* =========================
+           Responsive
+        ========================= */
 
         @media (max-width: 991.98px) {
 
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
+                display: none;
+            }
+
+            .mobile-navbar {
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                background-color: #ffffff;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .mobile-navbar-inner {
+                padding: 1rem 1.25rem;
+            }
+
+            .mobile-menu {
+                padding: 0.75rem 1.25rem 1rem;
+            }
+
+            .mobile-menu .nav-link-custom {
+                margin-bottom: 0.35rem;
             }
 
             .main-wrapper {
                 margin-left: 0;
                 padding: 1.5rem;
             }
-
         }
 
         @media (max-width: 575.98px) {
@@ -399,318 +503,472 @@
 
 <body>
 
-    <!-- Sidebar -->
+<!-- =========================================
+     Desktop Sidebar
+========================================= -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div>
+    <div>
 
-            <a href="{{ route('dashboard') }}" class="brand-logo">
+        <a href="{{ url('/') }}" class="brand-logo">
+            Narra
+        </a>
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
+
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
+
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
+
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom active">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
+
+        </nav>
+
+    </div>
+
+
+    <!-- Desktop Admin Profile -->
+
+    <div class="admin-profile">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+
+            <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                <div class="admin-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div class="overflow-hidden">
+
+                    <div class="admin-name text-truncate">
+                        {{ auth()->user()->name }}
+                    </div>
+
+                    <div class="admin-role">
+                        {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+                class="flex-shrink-0"
+            >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="logout-btn"
+                    title="Keluar"
+                    aria-label="Keluar"
+                >
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     Mobile Navbar
+========================================= -->
+
+<nav class="mobile-navbar navbar">
+
+    <div class="container-fluid mobile-navbar-inner">
+
+        <div class="d-flex align-items-center justify-content-between w-100">
+
+            <a href="{{ url('/') }}" class="brand-logo">
                 Narra
             </a>
 
-            <nav class="nav flex-column">
-
-                <a href="{{ route('dashboard') }}" class="nav-link-custom">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
-                    <i class="bi bi-newspaper"></i>
-                    <span>News</span>
-                </a>
-
-                <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
-                    <i class="bi bi-images"></i>
-                    <span>Gallery</span>
-                </a>
-
-                <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
-                    <i class="bi bi-envelope"></i>
-                    <span>Inbox</span>
-                </a>
-
-                <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
-                    <i class="bi bi-star"></i>
-                    <span>Rating</span>
-                </a>
-
-                @can('manage-admins')
-                    <a href="{{ route('admin-admins.index') }}" class="nav-link-custom active">
-                        <i class="bi bi-gear-fill"></i>
-                        <span>Akun</span>
-                    </a>
-                @endcan
-
-            </nav>
-
-        </div>
-
-        <!-- Admin Profile -->
-
-        <div class="admin-profile">
-
-            <div class="admin-avatar">
-                <i class="bi bi-person-fill"></i>
-            </div>
-
-            <div>
-
-                <div class="admin-name">
-                    {{ auth()->user()->name }}
-                </div>
-
-                <div class="admin-role">
-                    {{ auth()->user()->role ?? 'Admin' }}
-                </div>
-
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- Main Content -->
-
-    <main class="main-wrapper">
-
-        <!-- Header -->
-
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-
-            <div>
-
-                <h1 class="page-title">
-                    Kelola Akun
-                </h1>
-
-                <p class="page-subtitle m-0">
-                    Kelola akun administrator yang memiliki akses ke sistem NARRA.
-                </p>
-
-            </div>
-
-            <div>
-
-                <a
-                    href="{{ route('admin-admins.create') }}"
-                    class="btn-top-add"
-                >
-                    <i class="bi bi-plus-lg"></i>
-                    <span>Tambah Admin</span>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- Search -->
-
-        <div class="search-container">
-
-            <i class="bi bi-search search-icon"></i>
-
-            <input
-                type="text"
-                id="adminSearch"
-                class="search-input"
-                placeholder="Cari nama, email, atau role..."
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#adminNavbar"
+                aria-controls="adminNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
             >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
         </div>
 
+    </div>
 
-        <!-- Table -->
 
-        <div class="table-card">
+    <!-- Collapsed Menu -->
 
-            <div class="table-responsive">
+    <div class="collapse mobile-menu" id="adminNavbar">
 
-                <table class="table custom-table mb-0">
+        <nav class="nav flex-column">
 
-                    <thead>
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
 
-                        <tr>
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
 
-                            <th scope="col" style="width: 25%;">
-                                NAMA
-                            </th>
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
 
-                            <th scope="col" style="width: 30%;">
-                                EMAIL
-                            </th>
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
 
-                            <th scope="col" style="width: 20%;">
-                                ROLE
-                            </th>
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
 
-                            <th scope="col" style="width: 25%;" class="text-end">
-                                AKSI
-                            </th>
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom active">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
 
-                        </tr>
+        </nav>
 
-                    </thead>
 
-                    <tbody id="adminTable">
+        <!-- Mobile Profile -->
 
-                        @forelse ($admin as $admins)
+        <div class="mobile-profile">
 
-                            <tr class="admin-row">
+            <div class="d-flex align-items-center justify-content-between gap-3">
 
-                                <td>
-                                    <span class="admin-name-table">
-                                        {{ $admins->name }}
-                                    </span>
-                                </td>
+                <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
 
-                                <td>
-                                    <span class="email-text">
-                                        {{ $admins->email }}
-                                    </span>
-                                </td>
+                    <div class="admin-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
 
-                                <td>
+                    <div class="overflow-hidden">
 
-                                    @if ($admins->role === 'super_admin')
+                        <div class="admin-name text-truncate">
+                            {{ auth()->user()->name }}
+                        </div>
 
-                                        <span class="role-badge role-super-admin">
-                                            Super Admin
-                                        </span>
+                        <div class="admin-role">
+                            {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                        </div>
 
-                                    @else
+                    </div>
 
-                                        <span class="role-badge role-admin">
-                                            Admin
-                                        </span>
+                </div>
 
-                                    @endif
+                <form
+                    method="POST"
+                    action="{{ route('logout') }}"
+                    class="flex-shrink-0"
+                >
+                    @csrf
 
-                                </td>
-
-                                <td>
-
-                                    <div class="action-btn-group">
-
-                                        <a
-                                            href="{{ route('admin-admins.edit', $admins) }}"
-                                            class="action-link action-link-edit"
-                                        >
-                                            <i class="bi bi-pencil"></i>
-                                            Edit
-                                        </a>
-
-                                        @if ($admins->id !== auth()->id())
-
-                                            <form
-                                                action="{{ route('admin-admins.destroy', $admins) }}"
-                                                method="POST"
-                                                class="d-inline"
-                                            >
-                                                @csrf
-                                                @method('DELETE')
-
-                                                <button
-                                                    type="submit"
-                                                    class="action-link action-link-delete"
-                                                    onclick="return confirm('Yakin ingin menghapus akun admin ini?')"
-                                                >
-                                                    <i class="bi bi-trash"></i>
-                                                    Hapus
-                                                </button>
-
-                                            </form>
-
-                                        @endif
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        @empty
-
-                            <tr>
-
-                                <td colspan="4">
-
-                                    <div class="empty-state">
-
-                                        <div class="empty-icon">
-                                            <i class="bi bi-people"></i>
-                                        </div>
-
-                                        <div class="empty-title">
-                                            Belum ada administrator
-                                        </div>
-
-                                        <p class="empty-text">
-                                            Belum ada akun administrator yang tersedia.
-                                        </p>
-
-                                        <a
-                                            href="{{ route('admin-admins.create') }}"
-                                            class="btn-top-add"
-                                        >
-                                            <i class="bi bi-plus-lg"></i>
-                                            <span>Tambah Admin</span>
-                                        </a>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        @endforelse
-
-                    </tbody>
-
-                </table>
+                    <button
+                        type="submit"
+                        class="logout-btn"
+                        title="Keluar"
+                        aria-label="Keluar"
+                    >
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </form>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
+
+</nav>
 
 
-    <!-- Bootstrap JS -->
+<!-- =========================================
+     Main Content
+========================================= -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<main class="main-wrapper">
+
+    <!-- Header -->
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+
+        <div>
+
+            <h1 class="page-title">
+                Kelola Akun
+            </h1>
+
+            <p class="page-subtitle m-0">
+                Kelola akun administrator yang memiliki akses ke sistem NARRA.
+            </p>
+
+        </div>
+
+        <div>
+
+            <a
+                href="{{ route('admin-admins.create') }}"
+                class="btn-top-add"
+            >
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Admin</span>
+            </a>
+
+        </div>
+
+    </div>
 
 
     <!-- Search -->
 
-    <script>
+    <div class="search-container">
 
-        document
-            .getElementById('adminSearch')
-            .addEventListener('input', function () {
+        <i class="bi bi-search search-icon"></i>
 
-                const search = this.value.toLowerCase().trim();
+        <input
+            type="text"
+            id="adminSearch"
+            class="search-input"
+            placeholder="Cari nama, email, atau role..."
+        >
 
-                const rows = document.querySelectorAll('.admin-row');
+    </div>
 
-                rows.forEach(function (row) {
 
-                    const text = row.textContent.toLowerCase();
+    <!-- Table -->
 
-                    row.style.display = text.includes(search)
-                        ? ''
-                        : 'none';
+    <div class="table-card">
 
-                });
+        <div class="table-responsive">
+
+            <table class="table custom-table mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th scope="col" style="width: 25%;">
+                            NAMA
+                        </th>
+
+                        <th scope="col" style="width: 30%;">
+                            EMAIL
+                        </th>
+
+                        <th scope="col" style="width: 20%;">
+                            ROLE
+                        </th>
+
+                        <th scope="col" style="width: 25%;" class="text-end">
+                            AKSI
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="adminTable">
+
+                    @forelse ($admin as $admins)
+
+                        <tr class="admin-row">
+
+                            <td>
+                                <span class="admin-name-table">
+                                    {{ $admins->name }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="email-text">
+                                    {{ $admins->email }}
+                                </span>
+                            </td>
+
+                            <td>
+
+                                @if ($admins->role === 'super_admin')
+
+                                    <span class="role-badge role-super-admin">
+                                        Super Admin
+                                    </span>
+
+                                @else
+
+                                    <span class="role-badge role-admin">
+                                        Admin
+                                    </span>
+
+                                @endif
+
+                            </td>
+
+                            <td>
+
+                                <div class="action-btn-group">
+
+                                    <a
+                                        href="{{ route('admin-admins.edit', $admins) }}"
+                                        class="action-link action-link-edit"
+                                    >
+                                        <i class="bi bi-pencil"></i>
+                                        Edit
+                                    </a>
+
+                                    @if ($admins->id !== auth()->id())
+
+                                        <form
+                                            action="{{ route('admin-admins.destroy', $admins) }}"
+                                            method="POST"
+                                            class="d-inline"
+                                        >
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="action-link action-link-delete"
+                                                onclick="return confirm('Yakin ingin menghapus akun admin ini?')"
+                                            >
+                                                <i class="bi bi-trash"></i>
+                                                Hapus
+                                            </button>
+
+                                        </form>
+
+                                    @endif
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @empty
+
+                        <tr>
+
+                            <td colspan="4">
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+
+                                    <div class="empty-title">
+                                        Belum ada administrator
+                                    </div>
+
+                                    <p class="empty-text">
+                                        Belum ada akun administrator yang tersedia.
+                                    </p>
+
+                                    <a
+                                        href="{{ route('admin-admins.create') }}"
+                                        class="btn-top-add"
+                                    >
+                                        <i class="bi bi-plus-lg"></i>
+                                        <span>Tambah Admin</span>
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- Search -->
+
+<script>
+
+    document
+        .getElementById('adminSearch')
+        .addEventListener('input', function () {
+
+            const search = this.value.toLowerCase().trim();
+
+            const rows = document.querySelectorAll('.admin-row');
+
+            rows.forEach(function (row) {
+
+                const text = row.textContent.toLowerCase();
+
+                row.style.display = text.includes(search)
+                    ? ''
+                    : 'none';
 
             });
 
-    </script>
+        });
+
+</script>
 
 </body>
 </html>
