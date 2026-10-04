@@ -1,122 +1,539 @@
-<x-app-layout>
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="container py-5">
+    <title>Kelola Gallery - Admin NARRA</title>
 
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-            {{-- Main Card --}}
-            <div class="card border-0 shadow">
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
 
-                {{-- Header --}}
-                <div class="card-header bg-white border-0 p-4">
-                    <div class="d-flex justify-content-between align-items-center">
+    <!-- Google Fonts -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    >
 
-                        <div>
-                            <h3 class="fw-bold mb-1">
-                                Gallery
-                            </h3>
+    <style>
+        :root {
+            --primary-blue: #2b66f6;
+            --primary-blue-hover: #1e52d8;
+            --light-bg: #f8f9fa;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --danger-red: #dc2626;
+        }
 
-                            <p class="text-muted mb-0">
-                                Manage school gallery
-                            </p>
-                        </div>
+        * {
+            box-sizing: border-box;
+        }
 
-                        <a
-                            href="{{ route('admin-gallery.create') }}"
-                            class="btn btn-dark"
-                        >
-                            + Add gallery
-                        </a>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-                    </div>
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem 1.25rem;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding-left: 0.75rem;
+        }
+
+        .nav-link-custom {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.75rem 1rem;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.925rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            margin-bottom: 0.35rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link-custom i {
+            font-size: 1.15rem;
+        }
+
+        .nav-link-custom:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-blue);
+        }
+
+        .nav-link-custom.active {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+        }
+
+        /* Admin Profile */
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .admin-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .admin-role {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Main */
+        .main-wrapper {
+            margin-left: 260px;
+            padding: 2.25rem 2.5rem;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .page-title {
+            font-weight: 800;
+            font-size: 2.1rem;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Add Button */
+        .btn-add-gallery {
+            background-color: var(--primary-blue);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.65rem 1.25rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-gallery:hover {
+            background-color: var(--primary-blue-hover);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(43, 102, 246, 0.25);
+        }
+
+        /* Gallery Card */
+        .gallery-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        /* Gallery Item */
+        .gallery-item {
+            padding: 1.25rem 1.75rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .gallery-item:last-child {
+            border-bottom: none;
+        }
+
+        .gallery-image {
+            width: 180px;
+            height: 115px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        .no-image {
+            width: 180px;
+            height: 115px;
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .gallery-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+        }
+
+        .gallery-description {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .gallery-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Actions */
+        .action-btn-edit {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .action-btn-edit:hover {
+            color: var(--primary-blue-hover);
+            text-decoration: underline;
+        }
+
+        .action-btn-delete {
+            color: var(--danger-red);
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .action-btn-delete:hover {
+            color: #b91c1c;
+            text-decoration: underline;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 3.5rem 1.75rem;
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 56px;
+            height: 56px;
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.4rem;
+        }
+
+        .empty-title {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+        }
+
+        .empty-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Pagination */
+        .pagination-wrapper {
+            padding: 1.25rem 1.75rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        /* Mobile */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            .gallery-item {
+                padding: 1.25rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .page-title {
+                font-size: 1.7rem;
+            }
+
+            .gallery-image,
+            .no-image {
+                width: 100%;
+                height: 180px;
+            }
+
+            .gallery-item .row {
+                gap: 1rem;
+            }
+
+            .pagination-wrapper {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div>
+            <a href="{{ route('dashboard') }}" class="brand-logo">
+                Narra
+            </a>
+
+            <nav class="nav flex-column">
+
+                <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                    <i class="bi bi-newspaper"></i>
+                    <span>News</span>
+                </a>
+
+                <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom active">
+                    <i class="bi bi-images"></i>
+                    <span>Gallery</span>
+                </a>
+
+                <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
+                    <i class="bi bi-envelope"></i>
+                    <span>Inbox</span>
+                </a>
+
+                <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                    <i class="bi bi-star"></i>
+                    <span>Rating</span>
+                </a>
+
+                @can('manage-admins')
+                    <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                        <i class="bi bi-gear"></i>
+                        <span>Akun</span>
+                    </a>
+                @endcan
+
+            </nav>
+        </div>
+
+        <!-- Admin Profile -->
+        <div class="admin-profile">
+
+            <div class="admin-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <div>
+                <div class="admin-name">
+                    {{ auth()->user()->name }}
                 </div>
 
-                {{-- gallery List --}}
-                <div class="card-body p-4">
+                <div class="admin-role">
+                    {{ auth()->user()->role ?? 'Admin' }}
+                </div>
+            </div>
 
-                    @forelse ($gallery as $item)
+        </div>
 
-                        <div class="border rounded p-3 mb-3">
+    </aside>
 
-                            <div class="row align-items-center g-3">
 
-                                {{-- Image --}}
-                                <div class="col-md-3">
+    <!-- Main Content -->
+    <main class="main-wrapper">
 
-                                    @if ($item->image)
+        <!-- Page Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
 
-                                        <img
-                                            src="{{ asset('storage/' . $item->image) }}"
-                                            alt="{{ $item->title }}"
-                                            class="img-fluid rounded"
-                                            style="
-                                                width: 100%;
-                                                height: 130px;
-                                                object-fit: cover;
-                                            "
-                                        >
+            <div>
+                <h1 class="page-title">
+                    Kelola Gallery
+                </h1>
 
-                                    @else
+                <p class="page-subtitle m-0">
+                    Dokumentasi dan galeri kegiatan sekolah NARRA.
+                </p>
+            </div>
 
-                                        <div
-                                            class="bg-light rounded d-flex align-items-center justify-content-center text-muted"
-                                            style="height: 130px;"
-                                        >
-                                            No Image
-                                        </div>
+            <div>
+                <a
+                    href="{{ route('admin-gallery.create') }}"
+                    class="btn-add-gallery"
+                >
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Tambah Gallery</span>
+                </a>
+            </div>
 
-                                    @endif
+        </div>
 
+
+        <!-- Gallery Card -->
+        <div class="gallery-card">
+
+            @forelse ($gallery as $item)
+
+                <div class="gallery-item">
+
+                    <div class="row align-items-center g-4">
+
+                        <!-- Image -->
+                        <div class="col-md-3">
+
+                            @if ($item->image)
+
+                                <img
+                                    src="{{ asset('storage/' . $item->image) }}"
+                                    alt="{{ $item->title }}"
+                                    class="gallery-image"
+                                >
+
+                            @else
+
+                                <div class="no-image">
+                                    No Image
                                 </div>
 
-                                {{-- gallery Content --}}
-                                <div class="col-md-6">
+                            @endif
 
-                                    <h5 class="fw-bold mb-2">
-                                        {{ $item->title }}
-                                    </h5>
+                        </div>
 
-                                    @if ($item->description)
 
-                                        <p class="text-muted mb-0">
-                                            {{ Str::limit($item->description, 120) }}
-                                        </p>
+                        <!-- Content -->
+                        <div class="col-md-6">
 
-                                    @endif
+                            <div class="gallery-title">
+                                {{ $item->title }}
+                            </div>
 
+                            @if ($item->description)
+
+                                <p class="gallery-description">
+                                    {{ Str::limit($item->description, 120) }}
+                                </p>
+
+                            @endif
+
+                        </div>
+
+
+                        <!-- Date + Actions -->
+                        <div class="col-md-3">
+
+                            <div class="d-flex flex-column align-items-md-end gap-2">
+
+                                <div class="gallery-date">
+                                    {{ $item->created_at->format('d M Y') }}
                                 </div>
 
-                                {{-- Actions --}}
-                                <div class="col-md-3">
+                                <div class="d-flex gap-3 align-items-center">
 
-                                    <div class="d-flex justify-content-md-end gap-2">
+                                    <a
+                                        href="{{ route('admin-gallery.edit', $item->id) }}"
+                                        class="action-btn-edit"
+                                    >
+                                        <i class="bi bi-pencil"></i>
+                                        Edit
+                                    </a>
 
-                                        <a
-                                            href="{{ route('admin-gallery.edit', $item->id) }}"
-                                            class="btn btn-warning btn-sm"
+                                    <form
+                                        action="{{ route('admin-gallery.destroy', $item->id) }}"
+                                        method="POST"
+                                        class="d-inline"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="action-btn-delete border-0 bg-transparent p-0"
+                                            onclick="return confirm('Yakin ingin menghapus gallery ini?')"
                                         >
-                                            Edit
-                                        </a>
+                                            <i class="bi bi-trash"></i>
+                                            Hapus
+                                        </button>
 
-                                        <form
-                                            action="{{ route('admin-gallery.destroy', $item->id) }}"
-                                            method="POST"
-                                        >
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button
-                                                type="submit"
-                                                class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Yakin mau hapus?')"
-                                            >
-                                                Delete
-                                            </button>
-                                        </form>
-
-                                    </div>
+                                    </form>
 
                                 </div>
 
@@ -124,45 +541,58 @@
 
                         </div>
 
-                    @empty
-
-                        <div class="text-center py-5">
-
-                            <h5 class="fw-bold">
-                                Belum ada gallery
-                            </h5>
-
-                            <p class="text-muted">
-                                Belum ada berita yang ditambahkan.
-                            </p>
-
-                            <a
-                                href="{{ route('admin-gallery.create') }}"
-                                class="btn btn-dark"
-                            >
-                                + Add gallery
-                            </a>
-
-                        </div>
-
-                    @endforelse
-
-                    {{-- Pagination --}}
-                    @if ($gallery->hasPages())
-
-                        <div class="mt-4">
-                            {{ $gallery->links() }}
-                        </div>
-
-                    @endif
+                    </div>
 
                 </div>
 
-            </div>
+            @empty
+
+                <!-- Empty State -->
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="bi bi-images"></i>
+                    </div>
+
+                    <div class="empty-title">
+                        Belum ada gallery
+                    </div>
+
+                    <p class="empty-text">
+                        Belum ada dokumentasi yang ditambahkan ke gallery.
+                    </p>
+
+                    <a
+                        href="{{ route('admin-gallery.create') }}"
+                        class="btn-add-gallery"
+                    >
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Tambah Gallery</span>
+                    </a>
+
+                </div>
+
+            @endforelse
+
+
+            <!-- Pagination -->
+            @if ($gallery->hasPages())
+
+                <div class="pagination-wrapper">
+                    {{ $gallery->links() }}
+                </div>
+
+            @endif
 
         </div>
-    </div>
 
-</div>
-</x-app-layout>
+    </main>
 
+
+    <!-- Bootstrap JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+</body>
+</html>

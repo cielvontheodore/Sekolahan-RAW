@@ -18,15 +18,7 @@ class RatingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('ratingdir.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created rating from public website.
      */
     public function store(Request $request)
     {
@@ -44,12 +36,9 @@ class RatingController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rating $rating)
+    public function create()
     {
-        return view('ratingdir.show', compact('rating'));
+        return view('ratingdir.create');
     }
 
     /**
@@ -86,3 +75,4 @@ class RatingController extends Controller
         return redirect()->route('admin-rating.index');
     }
 }
+
