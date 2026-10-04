@@ -32,7 +32,6 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --danger-red: #ef4444;
         }
 
         * {
@@ -48,7 +47,10 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* =========================
+           Sidebar
+        ========================= */
+
         .sidebar {
             width: 260px;
             height: 100vh;
@@ -61,7 +63,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 1.5rem 1.25rem;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -73,6 +75,10 @@
             display: inline-block;
             margin-bottom: 2rem;
             padding-left: 0.75rem;
+        }
+
+        .brand-logo:hover {
+            color: var(--primary-blue-hover);
         }
 
         .nav-link-custom {
@@ -103,11 +109,16 @@
             color: #ffffff;
         }
 
-        /* Admin Profile */
+        .nav-link-custom.active:hover {
+            background-color: var(--primary-blue-hover);
+            color: #ffffff;
+        }
+
+        /* =========================
+           Admin Profile
+        ========================= */
+
         .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             padding-top: 1rem;
             border-top: 1px solid #f1f5f9;
         }
@@ -137,14 +148,78 @@
             color: #64748b;
         }
 
-        /* Main */
+        /* =========================
+           Logout
+        ========================= */
+
+        .logout-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 9px;
+            background-color: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* =========================
+           Mobile Navbar
+        ========================= */
+
+        .mobile-navbar {
+            display: none;
+        }
+
+        .mobile-navbar .brand-logo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-toggler {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.65rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(43, 102, 246, 0.15);
+        }
+
+        .mobile-menu {
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .mobile-profile {
+            border-top: 1px solid #f1f5f9;
+            margin-top: 0.75rem;
+            padding-top: 1rem;
+        }
+
+        /* =========================
+           Main
+        ========================= */
+
         .main-wrapper {
             margin-left: 260px;
             padding: 2.25rem 2.5rem;
             min-height: 100vh;
         }
 
-        /* Header */
+        /* =========================
+           Header
+        ========================= */
+
         .page-title {
             font-weight: 800;
             font-size: 2.1rem;
@@ -158,7 +233,10 @@
             font-size: 0.95rem;
         }
 
-        /* Form Card */
+        /* =========================
+           Form Card
+        ========================= */
+
         .form-card {
             background-color: #ffffff;
             border-radius: 1rem;
@@ -187,6 +265,10 @@
         .form-card-body {
             padding: 1.75rem;
         }
+
+        /* =========================
+           Form
+        ========================= */
 
         .form-label {
             font-weight: 700;
@@ -233,6 +315,10 @@
             margin-top: 0.5rem;
         }
 
+        /* =========================
+           Buttons
+        ========================= */
+
         .btn-primary-custom {
             background-color: var(--primary-blue);
             color: #ffffff;
@@ -267,14 +353,35 @@
             color: #334155;
         }
 
-        /* Mobile */
+        /* =========================
+           Responsive
+        ========================= */
+
         @media (max-width: 991.98px) {
+
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
+                display: none;
+            }
+
+            .mobile-navbar {
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                background-color: #ffffff;
                 border-bottom: 1px solid #e2e8f0;
+            }
+
+            .mobile-navbar-inner {
+                padding: 1rem 1.25rem;
+            }
+
+            .mobile-menu {
+                padding: 0.75rem 1.25rem 1rem;
+            }
+
+            .mobile-menu .nav-link-custom {
+                margin-bottom: 0.35rem;
             }
 
             .main-wrapper {
@@ -284,6 +391,7 @@
         }
 
         @media (max-width: 575.98px) {
+
             .page-title {
                 font-size: 1.7rem;
             }
@@ -302,251 +410,420 @@
 
 <body>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+<!-- =========================================
+     Desktop Sidebar
+========================================= -->
 
-        <div>
-            <a href="{{ route('dashboard') }}" class="brand-logo">
+<aside class="sidebar">
+
+    <div>
+
+        <a href="{{ url('/') }}" class="brand-logo">
+            Narra
+        </a>
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
+
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom active">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
+
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
+
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
+
+        </nav>
+
+    </div>
+
+
+    <!-- Desktop Admin Profile -->
+
+    <div class="admin-profile">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+
+            <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                <div class="admin-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div class="overflow-hidden">
+
+                    <div class="admin-name text-truncate">
+                        {{ auth()->user()->name }}
+                    </div>
+
+                    <div class="admin-role">
+                        {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+                class="flex-shrink-0"
+            >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="logout-btn"
+                    title="Keluar"
+                    aria-label="Keluar"
+                >
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     Mobile Navbar
+========================================= -->
+
+<nav class="mobile-navbar navbar">
+
+    <div class="container-fluid mobile-navbar-inner">
+
+        <div class="d-flex align-items-center justify-content-between w-100">
+
+            <a href="{{ url('/') }}" class="brand-logo">
                 Narra
             </a>
 
-            <nav class="nav flex-column">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#adminNavbar"
+                aria-controls="adminNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <a href="{{ route('dashboard') }}" class="nav-link-custom">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
-                    <i class="bi bi-newspaper"></i>
-                    <span>News</span>
-                </a>
-
-                <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom active">
-                    <i class="bi bi-images"></i>
-                    <span>Gallery</span>
-                </a>
-
-                <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
-                    <i class="bi bi-envelope"></i>
-                    <span>Inbox</span>
-                </a>
-
-                <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
-                    <i class="bi bi-star"></i>
-                    <span>Rating</span>
-                </a>
-
-                @can('manage-admins')
-                    <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
-                        <i class="bi bi-gear"></i>
-                        <span>Akun</span>
-                    </a>
-                @endcan
-
-            </nav>
         </div>
 
-        <!-- Admin Profile -->
-        <div class="admin-profile">
+    </div>
 
-            <div class="admin-avatar">
-                <i class="bi bi-person-fill"></i>
-            </div>
 
-            <div>
-                <div class="admin-name">
-                    {{ auth()->user()->name }}
+    <!-- Collapsed Menu -->
+
+    <div class="collapse mobile-menu" id="adminNavbar">
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
+
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom active">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
+
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
+
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
+
+        </nav>
+
+
+        <!-- Mobile Profile -->
+
+        <div class="mobile-profile">
+
+            <div class="d-flex align-items-center justify-content-between gap-3">
+
+                <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                    <div class="admin-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <div class="overflow-hidden">
+
+                        <div class="admin-name text-truncate">
+                            {{ auth()->user()->name }}
+                        </div>
+
+                        <div class="admin-role">
+                            {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div class="admin-role">
-                    {{ auth()->user()->role ?? 'Admin' }}
-                </div>
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- Main Content -->
-    <main class="main-wrapper">
-
-        <!-- Page Header -->
-        <div class="mb-4">
-
-            <h1 class="page-title">
-                Edit Gallery
-            </h1>
-
-            <p class="page-subtitle m-0">
-                Perbarui informasi dan gambar galeri sekolah NARRA.
-            </p>
-
-        </div>
-
-
-        <!-- Form Card -->
-        <div class="form-card">
-
-            <div class="form-card-header">
-
-                <h2 class="form-card-title">
-                    Informasi Gallery
-                </h2>
-
-                <p class="form-card-subtitle">
-                    Ubah data gallery yang sudah tersimpan.
-                </p>
-
-            </div>
-
-
-            <div class="form-card-body">
 
                 <form
-                    action="{{ route('admin-gallery.update', $gallery->id) }}"
                     method="POST"
-                    enctype="multipart/form-data"
+                    action="{{ route('logout') }}"
+                    class="flex-shrink-0"
                 >
-
                     @csrf
-                    @method('PUT')
 
-
-                    <!-- Title -->
-                    <div class="mb-4">
-
-                        <label for="title" class="form-label">
-                            Judul Gallery
-                        </label>
-
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            class="form-control @error('title') is-invalid @enderror"
-                            value="{{ old('title', $gallery->title) }}"
-                            placeholder="Masukkan judul gallery"
-                        >
-
-                        @error('title')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Description -->
-                    <div class="mb-4">
-
-                        <label for="description" class="form-label">
-                            Deskripsi
-                        </label>
-
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows="6"
-                            class="form-control @error('description') is-invalid @enderror"
-                            placeholder="Tulis deskripsi gallery..."
-                        >{{ old('description', $gallery->description) }}</textarea>
-
-                        @error('description')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Current Image -->
-                    @if($gallery->image)
-
-                        <div class="mb-4">
-
-                            <label class="form-label d-block">
-                                Gambar Saat Ini
-                            </label>
-
-                            <div class="current-image-wrapper">
-
-                                <img
-                                    src="{{ asset('storage/' . $gallery->image) }}"
-                                    alt="{{ $gallery->title }}"
-                                    class="current-image"
-                                >
-
-                            </div>
-
-                        </div>
-
-                    @endif
-
-
-                    <!-- New Image -->
-                    <div class="mb-4">
-
-                        <label for="image" class="form-label">
-                            Ganti Gambar
-                        </label>
-
-                        <input
-                            type="file"
-                            id="image"
-                            name="image"
-                            class="form-control @error('image') is-invalid @enderror"
-                        >
-
-                        <div class="image-help">
-                            Kosongkan jika ingin tetap menggunakan gambar saat ini.
-                        </div>
-
-                        @error('image')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Actions -->
-                    <div class="d-flex gap-2 pt-2">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary-custom"
-                        >
-                            <i class="bi bi-check-lg me-1"></i>
-                            Update Gallery
-                        </button>
-
-                        <a
-                            href="{{ route('admin-gallery.index') }}"
-                            class="btn-cancel"
-                        >
-                            Batal
-                        </a>
-
-                    </div>
-
+                    <button
+                        type="submit"
+                        class="logout-btn"
+                        title="Keluar"
+                        aria-label="Keluar"
+                    >
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
                 </form>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
+
+</nav>
 
 
-    <!-- Bootstrap JS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<!-- =========================================
+     Main Content
+========================================= -->
+
+<main class="main-wrapper">
+
+    <!-- Page Header -->
+
+    <div class="mb-4">
+
+        <h1 class="page-title">
+            Edit Gallery
+        </h1>
+
+        <p class="page-subtitle m-0">
+            Perbarui informasi dan gambar galeri sekolah NARRA.
+        </p>
+
+    </div>
+
+
+    <!-- Form Card -->
+
+    <div class="form-card">
+
+        <div class="form-card-header">
+
+            <h2 class="form-card-title">
+                Informasi Gallery
+            </h2>
+
+            <p class="form-card-subtitle">
+                Ubah data gallery yang sudah tersimpan.
+            </p>
+
+        </div>
+
+
+        <div class="form-card-body">
+
+            <form
+                action="{{ route('admin-gallery.update', $gallery->id) }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                @csrf
+                @method('PUT')
+
+
+                <!-- Title -->
+
+                <div class="mb-4">
+
+                    <label for="title" class="form-label">
+                        Judul Gallery
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        class="form-control @error('title') is-invalid @enderror"
+                        value="{{ old('title', $gallery->title) }}"
+                        placeholder="Masukkan judul gallery"
+                    >
+
+                    @error('title')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="mb-4">
+
+                    <label for="description" class="form-label">
+                        Deskripsi
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="6"
+                        class="form-control @error('description') is-invalid @enderror"
+                        placeholder="Tulis deskripsi gallery..."
+                    >{{ old('description', $gallery->description) }}</textarea>
+
+                    @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Current Image -->
+
+                @if($gallery->image)
+
+                    <div class="mb-4">
+
+                        <label class="form-label d-block">
+                            Gambar Saat Ini
+                        </label>
+
+                        <div class="current-image-wrapper">
+
+                            <img
+                                src="{{ asset('storage/' . $gallery->image) }}"
+                                alt="{{ $gallery->title }}"
+                                class="current-image"
+                            >
+
+                        </div>
+
+                    </div>
+
+                @endif
+
+
+                <!-- New Image -->
+
+                <div class="mb-4">
+
+                    <label for="image" class="form-label">
+                        Ganti Gambar
+                    </label>
+
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        class="form-control @error('image') is-invalid @enderror"
+                    >
+
+                    <div class="image-help">
+                        Kosongkan jika ingin tetap menggunakan gambar saat ini.
+                    </div>
+
+                    @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="d-flex gap-2 pt-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary-custom"
+                    >
+                        <i class="bi bi-check-lg me-1"></i>
+                        Update Gallery
+                    </button>
+
+                    <a
+                        href="{{ route('admin-gallery.index') }}"
+                        class="btn-cancel"
+                    >
+                        Batal
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 </html>
