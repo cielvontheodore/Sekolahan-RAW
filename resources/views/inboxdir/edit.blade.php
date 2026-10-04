@@ -47,7 +47,10 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* =========================
+           Sidebar
+        ========================= */
+
         .sidebar {
             width: 260px;
             height: 100vh;
@@ -60,7 +63,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 1.5rem 1.25rem;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -72,6 +75,10 @@
             display: inline-block;
             margin-bottom: 2rem;
             padding-left: 0.75rem;
+        }
+
+        .brand-logo:hover {
+            color: var(--primary-blue-hover);
         }
 
         .nav-link-custom {
@@ -102,11 +109,16 @@
             color: #ffffff;
         }
 
-        /* Admin Profile */
+        .nav-link-custom.active:hover {
+            background-color: var(--primary-blue-hover);
+            color: #ffffff;
+        }
+
+        /* =========================
+           Admin Profile
+        ========================= */
+
         .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             padding-top: 1rem;
             border-top: 1px solid #f1f5f9;
         }
@@ -136,14 +148,78 @@
             color: #64748b;
         }
 
-        /* Main */
+        /* =========================
+           Logout
+        ========================= */
+
+        .logout-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 9px;
+            background-color: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* =========================
+           Mobile Navbar
+        ========================= */
+
+        .mobile-navbar {
+            display: none;
+        }
+
+        .mobile-navbar .brand-logo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-toggler {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.65rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(43, 102, 246, 0.15);
+        }
+
+        .mobile-menu {
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .mobile-profile {
+            border-top: 1px solid #f1f5f9;
+            margin-top: 0.75rem;
+            padding-top: 1rem;
+        }
+
+        /* =========================
+           Main
+        ========================= */
+
         .main-wrapper {
             margin-left: 260px;
             padding: 2.25rem 2.5rem;
             min-height: 100vh;
         }
 
-        /* Header */
+        /* =========================
+           Header
+        ========================= */
+
         .page-title {
             font-weight: 800;
             font-size: 2.1rem;
@@ -157,7 +233,10 @@
             font-size: 0.95rem;
         }
 
-        /* Form Card */
+        /* =========================
+           Form Card
+        ========================= */
+
         .form-card {
             background-color: #ffffff;
             border-radius: 1rem;
@@ -187,7 +266,10 @@
             padding: 1.75rem;
         }
 
-        /* Form */
+        /* =========================
+           Form
+        ========================= */
+
         .form-label {
             font-weight: 700;
             font-size: 0.875rem;
@@ -211,7 +293,10 @@
             resize: vertical;
         }
 
-        /* Buttons */
+        /* =========================
+           Buttons
+        ========================= */
+
         .btn-primary-custom {
             background-color: var(--primary-blue);
             color: #ffffff;
@@ -246,27 +331,54 @@
             color: #334155;
         }
 
-        /* Validation */
+        /* =========================
+           Validation
+        ========================= */
+
         .invalid-feedback {
             font-size: 0.8rem;
         }
 
+        /* =========================
+           Responsive
+        ========================= */
+
         @media (max-width: 991.98px) {
+
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
+                display: none;
+            }
+
+            .mobile-navbar {
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                background-color: #ffffff;
                 border-bottom: 1px solid #e2e8f0;
+            }
+
+            .mobile-navbar-inner {
+                padding: 1rem 1.25rem;
+            }
+
+            .mobile-menu {
+                padding: 0.75rem 1.25rem 1rem;
+            }
+
+            .mobile-menu .nav-link-custom {
+                margin-bottom: 0.35rem;
             }
 
             .main-wrapper {
                 margin-left: 0;
                 padding: 1.5rem;
             }
+
         }
 
         @media (max-width: 575.98px) {
+
             .page-title {
                 font-size: 1.7rem;
             }
@@ -274,253 +386,421 @@
             .form-card-body {
                 padding: 1.25rem;
             }
+
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+<!-- =========================================
+     Desktop Sidebar
+========================================= -->
 
-        <div>
-            <a href="{{ route('dashboard') }}" class="brand-logo">
+<aside class="sidebar">
+
+    <div>
+
+        <a href="{{ url('/') }}" class="brand-logo">
+            Narra
+        </a>
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
+
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
+
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
+
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
+
+        </nav>
+
+    </div>
+
+    <!-- Desktop Admin Profile -->
+
+    <div class="admin-profile">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+
+            <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                <div class="admin-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div class="overflow-hidden">
+
+                    <div class="admin-name text-truncate">
+                        {{ auth()->user()->name }}
+                    </div>
+
+                    <div class="admin-role">
+                        {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+                class="flex-shrink-0"
+            >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="logout-btn"
+                    title="Keluar"
+                    aria-label="Keluar"
+                >
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     Mobile Navbar
+========================================= -->
+
+<nav class="mobile-navbar navbar">
+
+    <div class="container-fluid mobile-navbar-inner">
+
+        <div class="d-flex align-items-center justify-content-between w-100">
+
+            <a href="{{ url('/') }}" class="brand-logo">
                 Narra
             </a>
 
-            <nav class="nav flex-column">
-
-                <a href="{{ route('dashboard') }}" class="nav-link-custom">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
-                    <i class="bi bi-newspaper"></i>
-                    <span>News</span>
-                </a>
-
-                <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
-                    <i class="bi bi-images"></i>
-                    <span>Gallery</span>
-                </a>
-
-                <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
-                    <i class="bi bi-envelope"></i>
-                    <span>Inbox</span>
-                </a>
-
-                <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
-                    <i class="bi bi-star"></i>
-                    <span>Rating</span>
-                </a>
-
-                @can('manage-admins')
-                    <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
-                        <i class="bi bi-gear"></i>
-                        <span>Akun</span>
-                    </a>
-                @endcan
-
-            </nav>
-        </div>
-
-        <!-- Admin Profile -->
-        <div class="admin-profile">
-
-            <div class="admin-avatar">
-                <i class="bi bi-person-fill"></i>
-            </div>
-
-            <div>
-                <div class="admin-name">
-                    {{ auth()->user()->name }}
-                </div>
-
-                <div class="admin-role">
-                    {{ auth()->user()->role ?? 'Admin' }}
-                </div>
-            </div>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#adminNavbar"
+                aria-controls="adminNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
         </div>
 
-    </aside>
+    </div>
 
+    <!-- Collapsed Menu -->
 
-    <!-- Main Content -->
-    <main class="main-wrapper">
+    <div class="collapse mobile-menu" id="adminNavbar">
 
-        <!-- Page Header -->
-        <div class="mb-4">
+        <nav class="nav flex-column">
 
-            <h1 class="page-title">
-                Edit Inbox
-            </h1>
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
 
-            <p class="page-subtitle m-0">
-                Perbarui informasi dan pesan yang masuk melalui website NARRA.
-            </p>
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
 
-        </div>
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
 
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
 
-        <!-- Form Card -->
-        <div class="form-card">
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
 
-            <div class="form-card-header">
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
 
-                <div class="form-card-title">
-                    Informasi Inbox
+        </nav>
+
+        <!-- Mobile Profile -->
+
+        <div class="mobile-profile">
+
+            <div class="d-flex align-items-center justify-content-between gap-3">
+
+                <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                    <div class="admin-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <div class="overflow-hidden">
+
+                        <div class="admin-name text-truncate">
+                            {{ auth()->user()->name }}
+                        </div>
+
+                        <div class="admin-role">
+                            {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <p class="form-card-subtitle">
-                    Ubah informasi pesan yang ingin diperbarui.
-                </p>
-
-            </div>
-
-
-            <div class="form-card-body">
 
                 <form
-                    action="{{ route('admin-inbox.update', $inbox->id) }}"
                     method="POST"
+                    action="{{ route('logout') }}"
+                    class="flex-shrink-0"
                 >
                     @csrf
-                    @method('PUT')
 
-
-                    <!-- Name -->
-                    <div class="mb-4">
-
-                        <label for="name" class="form-label">
-                            Nama Pengirim
-                        </label>
-
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            class="form-control @error('name') is-invalid @enderror"
-                            value="{{ old('name', $inbox->name) }}"
-                            placeholder="Masukkan nama pengirim"
-                        >
-
-                        @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Email -->
-                    <div class="mb-4">
-
-                        <label for="email" class="form-label">
-                            Email Pengirim
-                        </label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            class="form-control @error('email') is-invalid @enderror"
-                            value="{{ old('email', $inbox->email) }}"
-                            placeholder="Masukkan email pengirim"
-                        >
-
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Program -->
-                    <div class="mb-4">
-
-                        <label for="program" class="form-label">
-                            Program
-                        </label>
-
-                        <input
-                            type="text"
-                            name="program"
-                            id="program"
-                            class="form-control @error('program') is-invalid @enderror"
-                            value="{{ old('program', $inbox->program) }}"
-                            placeholder="Masukkan program"
-                        >
-
-                        @error('program')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Message -->
-                    <div class="mb-4">
-
-                        <label for="message" class="form-label">
-                            Pesan
-                        </label>
-
-                        <textarea
-                            name="message"
-                            id="message"
-                            rows="6"
-                            class="form-control @error('message') is-invalid @enderror"
-                            placeholder="Tulis pesan dari pengirim..."
-                        >{{ old('message', $inbox->message) }}</textarea>
-
-                        @error('message')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
-                    </div>
-
-
-                    <!-- Actions -->
-                    <div class="d-flex gap-2">
-
-                        <button
-                            type="submit"
-                            class="btn-primary-custom"
-                        >
-                            Simpan Perubahan
-                        </button>
-
-                        <a
-                            href="{{ route('admin-inbox.index') }}"
-                            class="btn-cancel"
-                        >
-                            Batal
-                        </a>
-
-                    </div>
-
+                    <button
+                        type="submit"
+                        class="logout-btn"
+                        title="Keluar"
+                        aria-label="Keluar"
+                    >
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
                 </form>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
+
+</nav>
 
 
-    <!-- Bootstrap JS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+<!-- =========================================
+     Main Content
+========================================= -->
+
+<main class="main-wrapper">
+
+    <!-- Page Header -->
+
+    <div class="mb-4">
+
+        <h1 class="page-title">
+            Edit Inbox
+        </h1>
+
+        <p class="page-subtitle m-0">
+            Perbarui informasi dan pesan yang masuk melalui website NARRA.
+        </p>
+
+    </div>
+
+
+    <!-- Form Card -->
+
+    <div class="form-card">
+
+        <div class="form-card-header">
+
+            <div class="form-card-title">
+                Informasi Inbox
+            </div>
+
+            <p class="form-card-subtitle">
+                Ubah informasi pesan yang ingin diperbarui.
+            </p>
+
+        </div>
+
+
+        <div class="form-card-body">
+
+            <form
+                action="{{ route('admin-inbox.update', $inbox->id) }}"
+                method="POST"
+            >
+
+                @csrf
+                @method('PUT')
+
+
+                <!-- Name -->
+
+                <div class="mb-4">
+
+                    <label for="name" class="form-label">
+                        Nama Pengirim
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control @error('name') is-invalid @enderror"
+                        value="{{ old('name', $inbox->name) }}"
+                        placeholder="Masukkan nama pengirim"
+                    >
+
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="mb-4">
+
+                    <label for="email" class="form-label">
+                        Email Pengirim
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control @error('email') is-invalid @enderror"
+                        value="{{ old('email', $inbox->email) }}"
+                        placeholder="Masukkan email pengirim"
+                    >
+
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Program -->
+
+                <div class="mb-4">
+
+                    <label for="program" class="form-label">
+                        Program
+                    </label>
+
+                    <input
+                        type="text"
+                        name="program"
+                        id="program"
+                        class="form-control @error('program') is-invalid @enderror"
+                        value="{{ old('program', $inbox->program) }}"
+                        placeholder="Masukkan program"
+                    >
+
+                    @error('program')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Message -->
+
+                <div class="mb-4">
+
+                    <label for="message" class="form-label">
+                        Pesan
+                    </label>
+
+                    <textarea
+                        name="message"
+                        id="message"
+                        rows="6"
+                        class="form-control @error('message') is-invalid @enderror"
+                        placeholder="Tulis pesan dari pengirim..."
+                    >{{ old('message', $inbox->message) }}</textarea>
+
+                    @error('message')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="d-flex gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn-primary-custom"
+                    >
+                        Simpan Perubahan
+                    </button>
+
+                    <a
+                        href="{{ route('admin-inbox.index') }}"
+                        class="btn-cancel"
+                    >
+                        Batal
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
 
 </body>
 </html>

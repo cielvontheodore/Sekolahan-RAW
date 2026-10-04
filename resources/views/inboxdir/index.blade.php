@@ -47,7 +47,9 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* =========================
+           Sidebar
+        ========================= */
 
         .sidebar {
             width: 260px;
@@ -56,12 +58,12 @@
             top: 0;
             left: 0;
             background-color: #ffffff;
-            border-right: 1px solid var(--border-color);
+            border-right: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 1.5rem 1.25rem;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -73,6 +75,10 @@
             display: inline-block;
             margin-bottom: 2rem;
             padding-left: 0.75rem;
+        }
+
+        .brand-logo:hover {
+            color: var(--primary-blue-hover);
         }
 
         .nav-link-custom {
@@ -103,10 +109,16 @@
             color: #ffffff;
         }
 
+        .nav-link-custom.active:hover {
+            background-color: var(--primary-blue-hover);
+            color: #ffffff;
+        }
+
+        /* =========================
+           Admin Profile
+        ========================= */
+
         .admin-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
             padding-top: 1rem;
             border-top: 1px solid #f1f5f9;
         }
@@ -136,7 +148,67 @@
             color: #64748b;
         }
 
-        /* Main */
+        /* =========================
+           Logout
+        ========================= */
+
+        .logout-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 9px;
+            background-color: #fee2e2;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* =========================
+           Mobile Navbar
+        ========================= */
+
+        .mobile-navbar {
+            display: none;
+        }
+
+        .mobile-navbar .brand-logo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-toggler {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.45rem 0.65rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(43, 102, 246, 0.15);
+        }
+
+        .mobile-menu {
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .mobile-profile {
+            border-top: 1px solid #f1f5f9;
+            margin-top: 0.75rem;
+            padding-top: 1rem;
+        }
+
+        /* =========================
+           Main
+        ========================= */
 
         .main-wrapper {
             margin-left: 260px;
@@ -157,7 +229,9 @@
             font-size: 0.95rem;
         }
 
-        /* Add Button */
+        /* =========================
+           Add Button
+        ========================= */
 
         .btn-top-add {
             background-color: var(--primary-blue);
@@ -180,7 +254,9 @@
             box-shadow: 0 4px 12px rgba(43, 102, 246, 0.25);
         }
 
-        /* Search */
+        /* =========================
+           Search
+        ========================= */
 
         .search-container {
             position: relative;
@@ -219,7 +295,9 @@
             box-shadow: 0 0 0 3px rgba(43, 102, 246, 0.12);
         }
 
-        /* Table */
+        /* =========================
+           Table
+        ========================= */
 
         .table-card {
             background-color: #ffffff;
@@ -227,6 +305,7 @@
             border: 1px solid #f1f5f9;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
             overflow: hidden;
+
         }
 
         .custom-table {
@@ -288,7 +367,9 @@
             white-space: nowrap;
         }
 
-        /* Actions */
+        /* =========================
+           Actions
+        ========================= */
 
         .action-btn-group {
             display: flex;
@@ -327,7 +408,9 @@
             text-decoration: underline;
         }
 
-        /* Empty State */
+        /* =========================
+           Empty State
+        ========================= */
 
         .empty-state {
             padding: 4rem 1.5rem;
@@ -359,23 +442,44 @@
             margin-bottom: 1.25rem;
         }
 
-        /* Pagination */
+        /* =========================
+           Pagination
+        ========================= */
 
         .pagination-wrapper {
             padding: 1.25rem 1.5rem;
             border-top: 1px solid #f1f5f9;
         }
 
-        /* Mobile */
+        /* =========================
+           Responsive
+        ========================= */
 
         @media (max-width: 991.98px) {
 
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
+                display: none;
+            }
+
+            .mobile-navbar {
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                background-color: #ffffff;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .mobile-navbar-inner {
+                padding: 1rem 1.25rem;
+            }
+
+            .mobile-menu {
+                padding: 0.75rem 1.25rem 1rem;
+            }
+
+            .mobile-menu .nav-link-custom {
+                margin-bottom: 0.35rem;
             }
 
             .main-wrapper {
@@ -414,336 +518,488 @@
 
 <body>
 
-    <!-- Sidebar -->
+<!-- =========================================
+     Desktop Sidebar
+========================================= -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div>
+    <div>
 
-            <a href="{{ route('dashboard') }}" class="brand-logo">
+        <a href="{{ url('/') }}" class="brand-logo">
+            Narra
+        </a>
+
+        <nav class="nav flex-column">
+
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
+
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
+
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
+
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
+
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
+
+        </nav>
+
+    </div>
+
+    <!-- Desktop Admin Profile -->
+
+    <div class="admin-profile">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+
+            <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
+
+                <div class="admin-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <div class="overflow-hidden">
+
+                    <div class="admin-name text-truncate">
+                        {{ auth()->user()->name }}
+                    </div>
+
+                    <div class="admin-role">
+                        {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+                class="flex-shrink-0"
+            >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="logout-btn"
+                    title="Keluar"
+                    aria-label="Keluar"
+                >
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     Mobile Navbar
+========================================= -->
+
+<nav class="mobile-navbar navbar">
+
+    <div class="container-fluid mobile-navbar-inner">
+
+        <div class="d-flex align-items-center justify-content-between w-100">
+
+            <a href="{{ url('/') }}" class="brand-logo">
                 Narra
             </a>
 
-            <nav class="nav flex-column">
-
-                <a href="{{ route('dashboard') }}" class="nav-link-custom">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
-                    <i class="bi bi-newspaper"></i>
-                    <span>News</span>
-                </a>
-
-                <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
-                    <i class="bi bi-images"></i>
-                    <span>Gallery</span>
-                </a>
-
-                <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
-                    <i class="bi bi-envelope-fill"></i>
-                    <span>Inbox</span>
-                </a>
-
-                <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
-                    <i class="bi bi-star"></i>
-                    <span>Rating</span>
-                </a>
-
-                @can('manage-admins')
-                    <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
-                        <i class="bi bi-gear"></i>
-                        <span>Akun</span>
-                    </a>
-                @endcan
-
-            </nav>
-
-        </div>
-
-        <div class="admin-profile">
-
-            <div class="admin-avatar">
-                <i class="bi bi-person-fill"></i>
-            </div>
-
-            <div>
-
-                <div class="admin-name">
-                    {{ auth()->user()->name }}
-                </div>
-
-                <div class="admin-role">
-                    {{ auth()->user()->role ?? 'Admin' }}
-                </div>
-
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- Main Content -->
-
-    <main class="main-wrapper">
-
-        <!-- Header -->
-
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-
-            <div>
-
-                <h1 class="page-title">
-                    Kelola Inbox
-                </h1>
-
-                <p class="page-subtitle m-0">
-                    Kelola pesan dan pertanyaan dari pengunjung website NARRA.
-                </p>
-
-            </div>
-
-            <div>
-
-                <a
-                    href="{{ route('admin-inbox.create') }}"
-                    class="btn-top-add"
-                >
-                    <i class="bi bi-plus-lg"></i>
-                    <span>Tambah Inbox</span>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- Search -->
-
-        <div class="search-container">
-
-            <i class="bi bi-search search-icon"></i>
-
-            <input
-                type="text"
-                id="inboxSearch"
-                class="search-input"
-                placeholder="Cari nama, email, program, atau pesan..."
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#adminNavbar"
+                aria-controls="adminNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
             >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
         </div>
 
+    </div>
 
-        <!-- Table -->
+    <!-- Collapsed Menu -->
 
-        <div class="table-card">
+    <div class="collapse mobile-menu" id="adminNavbar">
 
-            <div class="table-responsive">
+        <nav class="nav flex-column">
 
-                <table class="table custom-table mb-0">
+            <a href="{{ route('dashboard') }}" class="nav-link-custom">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
 
-                    <thead>
+            <a href="{{ route('admin-news.index') }}" class="nav-link-custom">
+                <i class="bi bi-newspaper"></i>
+                <span>News</span>
+            </a>
 
-                        <tr>
+            <a href="{{ route('admin-gallery.index') }}" class="nav-link-custom">
+                <i class="bi bi-images"></i>
+                <span>Gallery</span>
+            </a>
 
-                            <th scope="col" style="width: 18%;">
-                                PENGIRIM
-                            </th>
+            <a href="{{ route('admin-inbox.index') }}" class="nav-link-custom active">
+                <i class="bi bi-envelope"></i>
+                <span>Inbox</span>
+            </a>
 
-                            <th scope="col" style="width: 20%;">
-                                EMAIL
-                            </th>
+            <a href="{{ route('admin-rating.index') }}" class="nav-link-custom">
+                <i class="bi bi-star"></i>
+                <span>Rating</span>
+            </a>
 
+            @can('manage-admins')
+                <a href="{{ route('admin-admins.index') }}" class="nav-link-custom">
+                    <i class="bi bi-gear"></i>
+                    <span>Akun</span>
+                </a>
+            @endcan
 
-                            <th scope="col" style="width: 15%;">
-                                PROGRAM
-                            </th>
+        </nav>
 
-                            <th scope="col" style="width: 27%;">
-                                PESAN
-                            </th>
+        <!-- Mobile Profile -->
 
-                            <th scope="col" style="width: 10%;">
-                                TANGGAL
-                            </th>
+        <div class="mobile-profile">
 
-                            <th scope="col" style="width: 10%;">
-                                AKSI
-                            </th>
+            <div class="d-flex align-items-center justify-content-between gap-3">
 
-                        </tr>
+                <div class="d-flex align-items-center gap-3 flex-grow-1 overflow-hidden">
 
-                    </thead>
+                    <div class="admin-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
 
-                    <tbody id="inboxTable">
+                    <div class="overflow-hidden">
 
-                        @forelse ($inbox as $item)
+                        <div class="admin-name text-truncate">
+                            {{ auth()->user()->name }}
+                        </div>
 
-                            <tr class="inbox-row">
+                        <div class="admin-role">
+                            {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                        </div>
 
-                                <td>
-                                    <span class="sender-name">
-                                        {{ $item->name ?? 'Anonim' }}
-                                    </span>
-                                </td>
+                    </div>
 
-                                <td>
-                                    <span
-                                        class="email-text"
-                                        title="{{ $item->email }}"
-                                    >
-                                        {{ $item->email ?? '-' }}
-                                    </span>
-                                </td>
+                </div>
 
-                                <td>
-                                    <span class="program-text">
-                                        {{ $item->program ?? '-' }}
-                                    </span>
-                                </td>
+                <form
+                    method="POST"
+                    action="{{ route('logout') }}"
+                    class="flex-shrink-0"
+                >
+                    @csrf
 
-                                <td>
-                                    <span
-                                        class="message-text"
-                                        title="{{ $item->message ?? '-' }}"
-                                    >
-                                        {{ $item->message ?? '-' }}
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <span class="date-text">
-                                        {{ $item->created_at->format('d M Y') }}
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <div class="action-btn-group">
-
-                                        <a
-                                            href="{{ route('admin-inbox.edit', $item->id) }}"
-                                            class="action-link action-link-edit"
-                                        >
-                                            <i class="bi bi-pencil"></i>
-                                            Edit
-                                        </a>
-
-                                        <form
-                                            action="{{ route('admin-inbox.destroy', $item->id) }}"
-                                            method="POST"
-                                            class="d-inline"
-                                        >
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button
-                                                type="submit"
-                                                class="action-link action-link-delete"
-                                                onclick="return confirm('Yakin ingin menghapus pesan ini?')"
-                                            >
-                                                <i class="bi bi-trash"></i>
-                                                Hapus
-                                            </button>
-
-                                        </form>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        @empty
-
-                            <tr>
-
-                                <td colspan="6">
-
-                                    <div class="empty-state">
-
-                                        <div class="empty-icon">
-                                            <i class="bi bi-envelope"></i>
-                                        </div>
-
-                                        <div class="empty-title">
-                                            Belum ada inbox
-                                        </div>
-
-                                        <p class="empty-text">
-                                            Belum ada pesan yang masuk melalui website.
-                                        </p>
-
-                                        <a
-                                            href="{{ route('admin-inbox.create') }}"
-                                            class="btn-top-add"
-                                        >
-                                            <i class="bi bi-plus-lg"></i>
-                                            <span>Tambah Inbox</span>
-                                        </a>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        @endforelse
-
-                    </tbody>
-
-                </table>
+                    <button
+                        type="submit"
+                        class="logout-btn"
+                        title="Keluar"
+                        aria-label="Keluar"
+                    >
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </form>
 
             </div>
 
+        </div>
 
-            @if ($inbox->hasPages())
+    </div>
 
-                <div class="pagination-wrapper">
-                    {{ $inbox->links() }}
-                </div>
+</nav>
 
-            @endif
+
+<!-- =========================================
+     Main Content
+========================================= -->
+
+<main class="main-wrapper">
+
+    <!-- Header -->
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+
+        <div>
+
+            <h1 class="page-title">
+                Kelola Inbox
+            </h1>
+
+            <p class="page-subtitle m-0">
+                Kelola pesan dan pertanyaan dari pengunjung website NARRA.
+            </p>
 
         </div>
 
-    </main>
+        <div>
 
+            <a
+                href="{{ route('admin-inbox.create') }}"
+                class="btn-top-add"
+            >
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah Inbox</span>
+            </a>
 
-    <!-- Bootstrap JS -->
+        </div>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+    </div>
 
 
     <!-- Search -->
 
-    <script>
+    <div class="search-container">
 
-        document
-            .getElementById('inboxSearch')
-            .addEventListener('input', function () {
+        <i class="bi bi-search search-icon"></i>
 
-                const search = this.value.toLowerCase().trim();
+        <input
+            type="text"
+            id="inboxSearch"
+            class="search-input"
+            placeholder="Cari nama, email, program, atau pesan..."
+        >
 
-                const rows = document.querySelectorAll('.inbox-row');
+    </div>
 
-                rows.forEach(function (row) {
 
-                    const text = row.textContent.toLowerCase();
+    <!-- Table -->
 
-                    row.style.display = text.includes(search)
-                        ? ''
-                        : 'none';
+    <div class="table-card">
 
-                });
+        <div class="table-responsive">
+
+            <table class="table custom-table mb-0">
+
+                <thead>
+
+                    <tr>
+
+                        <th scope="col" style="width: 18%;">
+                            PENGIRIM
+                        </th>
+
+                        <th scope="col" style="width: 20%;">
+                            EMAIL
+                        </th>
+
+                        <th scope="col" style="width: 15%;">
+                            PROGRAM
+                        </th>
+
+                        <th scope="col" style="width: 27%;">
+                            PESAN
+                        </th>
+
+                        <th scope="col" style="width: 10%;">
+                            TANGGAL
+                        </th>
+
+                        <th scope="col" style="width: 10%;">
+                            AKSI
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="inboxTable">
+
+                    @forelse ($inbox as $item)
+
+                        <tr class="inbox-row">
+
+                            <td>
+                                <span class="sender-name">
+                                    {{ $item->name ?? 'Anonim' }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span
+                                    class="email-text"
+                                    title="{{ $item->email }}"
+                                >
+                                    {{ $item->email ?? '-' }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="program-text">
+                                    {{ $item->program ?? '-' }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span
+                                    class="message-text"
+                                    title="{{ $item->message ?? '-' }}"
+                                >
+                                    {{ $item->message ?? '-' }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="date-text">
+                                    {{ $item->created_at->format('d M Y') }}
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="action-btn-group">
+
+                                    <a
+                                        href="{{ route('admin-inbox.edit', $item->id) }}"
+                                        class="action-link action-link-edit"
+                                    >
+                                        <i class="bi bi-pencil"></i>
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        action="{{ route('admin-inbox.destroy', $item->id) }}"
+                                        method="POST"
+                                        class="d-inline"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="action-link action-link-delete"
+                                            onclick="return confirm('Yakin ingin menghapus pesan ini?')"
+                                        >
+                                            <i class="bi bi-trash"></i>
+                                            Hapus
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @empty
+
+                        <tr>
+
+                            <td colspan="6">
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+
+                                    <div class="empty-title">
+                                        Belum ada inbox
+                                    </div>
+
+                                    <p class="empty-text">
+                                        Belum ada pesan yang masuk melalui website.
+                                    </p>
+
+                                    <a
+                                        href="{{ route('admin-inbox.create') }}"
+                                        class="btn-top-add"
+                                    >
+                                        <i class="bi bi-plus-lg"></i>
+                                        <span>Tambah Inbox</span>
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        @if ($inbox->hasPages())
+
+            <div class="pagination-wrapper">
+                {{ $inbox->links() }}
+            </div>
+
+        @endif
+
+    </div>
+
+</main>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- Search -->
+
+<script>
+
+    document
+        .getElementById('inboxSearch')
+        .addEventListener('input', function () {
+
+            const search = this.value.toLowerCase().trim();
+
+            const rows = document.querySelectorAll('.inbox-row');
+
+            rows.forEach(function (row) {
+
+                const text = row.textContent.toLowerCase();
+
+                row.style.display = text.includes(search)
+                    ? ''
+                    : 'none';
 
             });
 
-    </script>
+        });
+
+</script>
 
 </body>
 </html>
