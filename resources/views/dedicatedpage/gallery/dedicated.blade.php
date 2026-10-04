@@ -433,7 +433,7 @@
 
 
             <div class="copyright-text mt-3 mt-sm-0">
-                &copy; {{ date('Y') }} NARRA. Hak cipta dilindungi undang-undang
+                &copy; {{ date('Y') }} Narra. Hak cipta dilindungi undang-undang
             </div>
 
         </footer>

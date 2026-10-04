@@ -440,7 +440,7 @@
 
 
             <div class="copyright-text mt-3 mt-sm-0">
-                &copy; {{ date('Y') }} NARRA. ALL RIGHTS RESERVED.
+                &copy; {{ date('Y') }} Narra. Hak cipta dilindungi undang-undang.
             </div>
 
         </footer>
