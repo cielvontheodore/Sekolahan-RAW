@@ -1196,7 +1196,7 @@
                                 </span>
 
                                 <a
-                                    href="{{ route('admin-rating.show', $rating) }}"
+                                    href="{{ route('admin-rating.index', $rating) }}"
                                     class="action-link action-link-approve"
                                 >
                                     Lihat

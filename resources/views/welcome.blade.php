@@ -317,6 +317,50 @@
                 border-right: none;
             }
         }
+
+        /* Rating + Map */
+        .rating-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .rating-map {
+            width: 50%;
+            min-height: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+        }
+
+        .rating-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 520px;
+            display: block;
+            border: 0;
+        }
+
+        .rating-form-wrapper {
+            width: 50%;
+        }
+
+        @media (max-width: 991.98px) {
+            .rating-layout {
+                flex-direction: column;
+            }
+
+            .rating-map,
+            .rating-form-wrapper {
+                width: 100%;
+            }
+
+            .rating-map iframe {
+                min-height: 400px;
+            }
+        }
+
     </style>
 </head>
 
@@ -812,162 +856,202 @@
     </section>
 
 
-    <!-- Rating Section -->
-    <section class="rating-section py-5" id="rating">
+<!-- Rating Section -->
+<section class="rating-section py-5" id="rating">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row justify-content-center">
+        <!-- Header -->
+        <div class="text-center mb-4">
 
-                <div class="col-lg-8">
+            <span class="badge-soft-primary mb-2">
+                Pendapat Anda
+            </span>
 
-                    <div class="text-center mb-4">
+            <h2 class="fw-bold">
+                Bagikan Pengalamanmu
+            </h2>
 
-                        <span class="badge-soft-primary mb-2">
-                            Pendapat Anda
-                        </span>
+            <p class="text-secondary">
+                Berikan rating dan pesan untuk membantu kami
+                meningkatkan pengalaman di Narra.
+            </p>
 
-                        <h2 class="fw-bold">
-                            Bagikan Pengalamanmu
-                        </h2>
-
-                        <p class="text-secondary">
-                            Berikan rating dan pesan untuk membantu kami
-                            meningkatkan pengalaman di Narra.
-                        </p>
-
-                    </div>
+        </div>
 
 
-                    <div class="rating-card">
+        <!-- Map + Rating Form -->
+        <div class="rating-layout">
 
-                        @if (session('rating_success'))
+            <!-- Google Maps -->
+            <div class="rating-map">
 
-                            <div class="alert alert-success">
-                                {{ session('rating_success') }}
-                            </div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252004.94111745973!2d118.28348845000001!3d9.282015849999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3235361be2c6850f%3A0xfdc231a1287f4c1c!2sNarra%2C%20Palawan%2C%20Filipina!5e0!3m2!1sid!2sid!4v1791121419585!5m2!1sid!2sid"
+                    width="600"
+                    height="450"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
 
-                        @endif
-
-
-                        @if ($errors->any())
-
-                            <div class="alert alert-danger">
-
-                                <ul class="mb-0">
-
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-
-                                </ul>
-
-                            </div>
-
-                        @endif
+            </div>
 
 
-                        <form action="{{ route('rating.store') }}" method="POST">
+            <!-- Rating Form -->
+            <div class="rating-form-wrapper">
 
-                            @csrf
+                <div class="rating-card h-100">
 
-                            <div class="mb-3">
+                    @if (session('rating_success'))
 
-                                <label
-                                    for="name"
-                                    class="form-label fw-semibold"
-                                >
-                                    Nama
-                                </label>
+                        <div class="alert alert-success">
+                            {{ session('rating_success') }}
+                        </div>
 
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    class="form-control"
-                                    placeholder="Nama Anda"
-                                    value="{{ old('name') }}"
-                                >
-
-                            </div>
+                    @endif
 
 
-                            <div class="mb-3">
+                    @if ($errors->any())
 
-                                <label
-                                    for="rating"
-                                    class="form-label fw-semibold"
-                                >
-                                    Rating
-                                </label>
+                        <div class="alert alert-danger">
 
-                                <select
-                                    name="rating"
-                                    id="rating"
-                                    class="form-select"
-                                    required
-                                >
+                            <ul class="mb-0">
 
-                                    <option value="">
-                                        Pilih rating
-                                    </option>
+                                @foreach ($errors->all() as $error)
 
-                                    <option value="1" {{ old('rating') == 1 ? 'selected' : '' }}>
-                                        1 - Sangat Kurang
-                                    </option>
+                                    <li>{{ $error }}</li>
 
-                                    <option value="2" {{ old('rating') == 2 ? 'selected' : '' }}>
-                                        2 - Kurang
-                                    </option>
+                                @endforeach
 
-                                    <option value="3" {{ old('rating') == 3 ? 'selected' : '' }}>
-                                        3 - Cukup
-                                    </option>
+                            </ul>
 
-                                    <option value="4" {{ old('rating') == 4 ? 'selected' : '' }}>
-                                        4 - Baik
-                                    </option>
+                        </div>
 
-                                    <option value="5" {{ old('rating') == 5 ? 'selected' : '' }}>
-                                        5 - Sangat Baik
-                                    </option>
-
-                                </select>
-
-                            </div>
+                    @endif
 
 
-                            <div class="mb-4">
+                    <form
+                        action="{{ route('rating.store') }}"
+                        method="POST"
+                    >
 
-                                <label
-                                    for="message"
-                                    class="form-label fw-semibold"
-                                >
-                                    Pesan
-                                </label>
+                        @csrf
 
-                                <textarea
-                                    name="message"
-                                    id="message"
-                                    rows="4"
-                                    class="form-control"
-                                    placeholder="Tuliskan pesan Anda..."
-                                >{{ old('message') }}</textarea>
+                        <!-- Nama -->
+                        <div class="mb-3">
 
-                            </div>
-
-
-                            <button
-                                type="submit"
-                                class="btn btn-primary w-100"
+                            <label
+                                for="name"
+                                class="form-label fw-semibold"
                             >
-                                <i class="bi bi-send me-2"></i>
-                                Kirim Rating
-                            </button>
+                                Nama
+                            </label>
 
-                        </form>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                class="form-control"
+                                placeholder="Nama Anda"
+                                value="{{ old('name') }}"
+                            >
 
-                    </div>
+                        </div>
+
+
+                        <!-- Rating -->
+                        <div class="mb-3">
+
+                            <label
+                                for="rating"
+                                class="form-label fw-semibold"
+                            >
+                                Rating
+                            </label>
+
+                            <select
+                                name="rating"
+                                id="rating"
+                                class="form-select"
+                                required
+                            >
+
+                                <option value="">
+                                    Pilih rating
+                                </option>
+
+                                <option
+                                    value="1"
+                                    {{ old('rating') == 1 ? 'selected' : '' }}
+                                >
+                                    1 - Sangat Kurang
+                                </option>
+
+                                <option
+                                    value="2"
+                                    {{ old('rating') == 2 ? 'selected' : '' }}
+                                >
+                                    2 - Kurang
+                                </option>
+
+                                <option
+                                    value="3"
+                                    {{ old('rating') == 3 ? 'selected' : '' }}
+                                >
+                                    3 - Cukup
+                                </option>
+
+                                <option
+                                    value="4"
+                                    {{ old('rating') == 4 ? 'selected' : '' }}
+                                >
+                                    4 - Baik
+                                </option>
+
+                                <option
+                                    value="5"
+                                    {{ old('rating') == 5 ? 'selected' : '' }}
+                                >
+                                    5 - Sangat Baik
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Pesan -->
+                        <div class="mb-4">
+
+                            <label
+                                for="message"
+                                class="form-label fw-semibold"
+                            >
+                                Pesan
+                            </label>
+
+                            <textarea
+                                name="message"
+                                id="message"
+                                rows="4"
+                                class="form-control"
+                                placeholder="Tuliskan pesan Anda..."
+                            >{{ old('message') }}</textarea>
+
+                        </div>
+
+
+                        <!-- Submit -->
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100"
+                        >
+                            <i class="bi bi-send me-2"></i>
+                            Kirim Rating
+                        </button>
+
+                    </form>
 
                 </div>
 
@@ -975,7 +1059,9 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
     <!-- Contact Section -->

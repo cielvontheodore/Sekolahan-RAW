@@ -463,6 +463,48 @@
                 padding: 1.25rem;
             }
         }
+
+        /* =========================
+           Search
+        ========================= */
+
+        .search-container {
+            position: relative;
+            max-width: 380px;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.65rem 1rem 0.65rem 2.6rem;
+            background-color: #ffffff;
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #334155;
+            outline: none;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s ease;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(43, 102, 246, 0.12);
+        }
+
     </style>
 </head>
 
@@ -730,6 +772,18 @@
 
     </div>
 
+    <div class="search-container">
+        <i class="bi bi-search search-icon"></i>
+        <input
+            type="text"
+            id="gallerySearch"
+            class="search-input"
+            placeholder="Cari judul atau deskripsi galeri..."
+            aria-label="Cari galeri"
+        >
+    </div>
+
+
 
     <!-- Gallery Card -->
 
@@ -737,7 +791,7 @@
 
         @forelse ($gallery as $item)
 
-            <div class="gallery-item">
+            <div class="gallery-item gallery-row">
 
                 <div class="row align-items-center g-4">
 
@@ -886,4 +940,17 @@
 
 </body>
 </html>
+
+
+<script>
+    document.getElementById('gallerySearch').addEventListener('input', function () {
+        const search = this.value.toLowerCase().trim();
+        const items = document.querySelectorAll('.gallery-row');
+
+        items.forEach(function (item) {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(search) ? '' : 'none';
+        });
+    });
+</script>
 
