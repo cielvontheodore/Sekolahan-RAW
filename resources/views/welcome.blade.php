@@ -1,5 +1,3 @@
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -40,7 +38,6 @@
             background-color: #ffffff;
         }
 
-        /* Buttons */
         .btn-primary {
             background-color: var(--bs-primary);
             border-color: var(--bs-primary);
@@ -87,7 +84,7 @@
             display: inline-block;
         }
 
-       /* Navbar */
+        /* Navbar */
         .navbar {
             background-color: #f8fafc !important;
             padding-top: 1.5rem;
@@ -360,113 +357,95 @@
                 min-height: 400px;
             }
         }
-
     </style>
 </head>
 
 <body>
 
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
 
-    <div class="container">
+        <div class="container">
 
-        <a
-            class="navbar-brand"
-            href="{{ url('/') }}"
-        >
-            Narra
-        </a>
+            <a
+                class="navbar-brand"
+                href="{{ url('/') }}"
+            >
+                Narra
+            </a>
 
-        <button
-            class="navbar-toggler border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button
+                class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNav"
-        >
+            <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navbarNav"
+            >
 
-            <ul class="navbar-nav">
+                <ul class="navbar-nav">
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link active"
-                        href="#home"
-                    >
-                        Home
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            Home
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#about"
-                    >
-                        About
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            About
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#programs"
-                    >
-                        Majors
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">
+                            Majors
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#news"
-                    >
-                        News
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">
+                            News
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#gallery"
-                    >
-                        Gallery
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">
+                            Gallery
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#rating"
-                    >
-                        Rating
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rating">
+                            Rating
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#contact"
-                    >
-                        Contact
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            Contact
+                        </a>
+                    </li>
 
-            </ul>
+                </ul>
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
 
     <!-- Hero Section -->
     <section class="hero-section text-center" id="home">
+
         <div class="container">
+
             <div class="row justify-content-center">
+
                 <div class="col-lg-9 col-xl-8">
 
                     <span class="badge-soft-primary mb-3">
@@ -487,6 +466,7 @@
                     </p>
 
                     <div class="d-flex justify-content-center gap-3">
+
                         <a href="#programs" class="btn btn-primary">
                             Mulai Jelajahi
                         </a>
@@ -494,43 +474,75 @@
                         <a href="#about" class="btn btn-outline-custom">
                             Pelajari Lebih Lanjut
                         </a>
+
                     </div>
 
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
 
     <!-- Stats Section -->
     <section class="stats-section my-4">
+
         <div class="container">
+
             <div class="row text-center gy-4">
 
                 <div class="col-md-4 divider-vertical">
-                    <div class="stat-value">98%</div>
-                    <div class="stat-label">Tingkat Kelulusan</div>
+
+                    <div class="stat-value">
+                        98%
+                    </div>
+
+                    <div class="stat-label">
+                        Tingkat Kelulusan
+                    </div>
+
                 </div>
 
                 <div class="col-md-4 divider-vertical">
-                    <div class="stat-value">50+</div>
-                    <div class="stat-label">Program & Komunitas</div>
+
+                    <div class="stat-value">
+                        50+
+                    </div>
+
+                    <div class="stat-label">
+                        Program & Komunitas
+                    </div>
+
                 </div>
 
                 <div class="col-md-4">
-                    <div class="stat-value">20:1</div>
-                    <div class="stat-label">Rasio Guru & Siswa</div>
+
+                    <div class="stat-value">
+                        20:1
+                    </div>
+
+                    <div class="stat-label">
+                        Rasio Guru & Siswa
+                    </div>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
 
 
     <!-- About Section -->
     <section id="about" class="py-5 my-4 text-center">
+
         <div class="container">
+
             <div class="row justify-content-center">
+
                 <div class="col-lg-8">
 
                     <span class="badge-soft-primary mb-3">
@@ -538,7 +550,7 @@
                     </span>
 
                     <h2 class="fw-bold mb-4" style="font-size: 2.25rem;">
-                       Membentuk Masa Depan melalui Pendidikan
+                        Membentuk Masa Depan melalui Pendidikan
                     </h2>
 
                     <p
@@ -554,16 +566,21 @@
                     </p>
 
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
 
     <!-- Programs Section -->
     <section id="programs" class="py-5 bg-light-subtle">
+
         <div class="container">
 
             <div class="text-center mb-5">
+
                 <span class="badge-soft-primary mb-2">
                     Program Keahlian
                 </span>
@@ -576,12 +593,14 @@
                     Pilih alur pembelajaran yang sesuai dengan minat
                     dan potensi masa depan digital Anda.
                 </p>
+
             </div>
 
             <div class="row g-4">
 
                 <!-- Program 1 -->
                 <div class="col-md-4">
+
                     <div class="card-feature">
 
                         <div class="icon-box">
@@ -599,10 +618,13 @@
                         </p>
 
                     </div>
+
                 </div>
+
 
                 <!-- Program 2 -->
                 <div class="col-md-4">
+
                     <div class="card-feature">
 
                         <div class="icon-box">
@@ -620,10 +642,13 @@
                         </p>
 
                     </div>
+
                 </div>
+
 
                 <!-- Program 3 -->
                 <div class="col-md-4">
+
                     <div class="card-feature">
 
                         <div class="icon-box">
@@ -641,19 +666,25 @@
                         </p>
 
                     </div>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
 
 
     <!-- News Section -->
     <section id="news" class="py-5">
+
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
+
                 <div>
+
                     <span class="badge-soft-primary mb-2">
                         Kabar Terbaru
                     </span>
@@ -661,6 +692,7 @@
                     <h2 class="fw-bold mb-0 fs-2">
                         Berita Terbaru
                     </h2>
+
                 </div>
 
                 <a
@@ -670,6 +702,7 @@
                     Lihat Semua Berita
                     <i class="bi bi-arrow-right ms-1"></i>
                 </a>
+
             </div>
 
             <div class="row g-4">
@@ -677,10 +710,12 @@
                 @forelse ($news as $item)
 
                     <div class="col-md-6 col-lg-4">
+
                         <a
                             href="{{ route('news.show', $item) }}"
                             class="text-decoration-none"
                         >
+
                             <div class="card-news">
 
                                 @if ($item->image)
@@ -722,12 +757,15 @@
                                 </div>
 
                             </div>
+
                         </a>
+
                     </div>
 
                 @empty
 
                     <div class="col-12">
+
                         <div class="text-center py-5">
 
                             <i class="bi bi-journal-x fs-1 text-secondary"></i>
@@ -737,22 +775,27 @@
                             </p>
 
                         </div>
+
                     </div>
 
                 @endforelse
 
             </div>
+
         </div>
+
     </section>
 
 
     <!-- Gallery Section -->
     <section id="gallery" class="py-5">
+
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
 
                 <div>
+
                     <span class="badge-soft-primary mb-2">
                         Dokumentasi
                     </span>
@@ -765,6 +808,7 @@
                         Berbagai momen kebersamaan, semangat belajar,
                         dan pengalaman berharga bersama.
                     </p>
+
                 </div>
 
                 <a
@@ -776,7 +820,6 @@
                 </a>
 
             </div>
-
 
             <div class="row g-3">
 
@@ -838,6 +881,7 @@
                 @empty
 
                     <div class="col-12">
+
                         <div class="text-center py-5">
 
                             <i class="bi bi-images fs-1 text-secondary"></i>
@@ -847,211 +891,216 @@
                             </p>
 
                         </div>
+
                     </div>
 
                 @endforelse
 
             </div>
+
         </div>
+
     </section>
 
 
-<!-- Rating Section -->
-<section class="rating-section py-5" id="rating">
+    <!-- Rating Section -->
+    <section class="rating-section py-5" id="rating">
 
-    <div class="container">
+        <div class="container">
 
-        <!-- Header -->
-        <div class="text-center mb-4">
+            <!-- Header -->
+            <div class="text-center mb-4">
 
-            <span class="badge-soft-primary mb-2">
-                Pendapat Anda
-            </span>
+                <span class="badge-soft-primary mb-2">
+                    Pendapat Anda
+                </span>
 
-            <h2 class="fw-bold">
-                Bagikan Pengalamanmu
-            </h2>
+                <h2 class="fw-bold">
+                    Bagikan Pengalamanmu
+                </h2>
 
-            <p class="text-secondary">
-                Berikan rating dan pesan untuk membantu kami
-                meningkatkan pengalaman di Narra.
-            </p>
-
-        </div>
-
-
-        <!-- Map + Rating Form -->
-        <div class="rating-layout">
-
-            <!-- Google Maps -->
-            <div class="rating-map">
-
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252004.94111745973!2d118.28348845000001!3d9.282015849999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3235361be2c6850f%3A0xfdc231a1287f4c1c!2sNarra%2C%20Palawan%2C%20Filipina!5e0!3m2!1sid!2sid!4v1791121419585!5m2!1sid!2sid"
-                    width="600"
-                    height="450"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                ></iframe>
+                <p class="text-secondary">
+                    Berikan rating dan pesan untuk membantu kami
+                    meningkatkan pengalaman di Narra.
+                </p>
 
             </div>
 
 
-            <!-- Rating Form -->
-            <div class="rating-form-wrapper">
+            <!-- Map + Rating Form -->
+            <div class="rating-layout">
 
-                <div class="rating-card h-100">
+                <!-- Google Maps -->
+                <div class="rating-map">
 
-                    @if (session('rating_success'))
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252004.94111745973!2d118.28348845000001!3d9.282015849999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3235361be2c6850f%3A0xfdc231a1287f4c1c!2sNarra%2C%20Palawan%2C%20Filipina!5e0!3m2!1sid!2sid!4v1791121419585!5m2!1sid!2sid"
+                        width="600"
+                        height="450"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                    ></iframe>
 
-                        <div class="alert alert-success">
-                            {{ session('rating_success') }}
-                        </div>
-
-                    @endif
-
-
-                    @if ($errors->any())
-
-                        <div class="alert alert-danger">
-
-                            <ul class="mb-0">
-
-                                @foreach ($errors->all() as $error)
-
-                                    <li>{{ $error }}</li>
-
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-
-                    @endif
+                </div>
 
 
-                    <form
-                        action="{{ route('rating.store') }}"
-                        method="POST"
-                    >
+                <!-- Rating Form -->
+                <div class="rating-form-wrapper">
 
-                        @csrf
+                    <div class="rating-card h-100">
 
-                        <!-- Nama -->
-                        <div class="mb-3">
+                        @if (session('rating_success'))
 
-                            <label
-                                for="name"
-                                class="form-label fw-semibold"
-                            >
-                                Nama
-                            </label>
+                            <div class="alert alert-success">
+                                {{ session('rating_success') }}
+                            </div>
 
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                class="form-control"
-                                placeholder="Nama Anda"
-                                value="{{ old('name') }}"
-                            >
-
-                        </div>
+                        @endif
 
 
-                        <!-- Rating -->
-                        <div class="mb-3">
+                        @if ($errors->any())
 
-                            <label
-                                for="rating"
-                                class="form-label fw-semibold"
-                            >
-                                Rating
-                            </label>
+                            <div class="alert alert-danger">
 
-                            <select
-                                name="rating"
-                                id="rating"
-                                class="form-select"
-                                required
-                            >
+                                <ul class="mb-0">
 
-                                <option value="">
-                                    Pilih rating
-                                </option>
+                                    @foreach ($errors->all() as $error)
 
-                                <option
-                                    value="1"
-                                    {{ old('rating') == 1 ? 'selected' : '' }}
-                                >
-                                    1 - Sangat Kurang
-                                </option>
+                                        <li>{{ $error }}</li>
 
-                                <option
-                                    value="2"
-                                    {{ old('rating') == 2 ? 'selected' : '' }}
-                                >
-                                    2 - Kurang
-                                </option>
+                                    @endforeach
 
-                                <option
-                                    value="3"
-                                    {{ old('rating') == 3 ? 'selected' : '' }}
-                                >
-                                    3 - Cukup
-                                </option>
+                                </ul>
 
-                                <option
-                                    value="4"
-                                    {{ old('rating') == 4 ? 'selected' : '' }}
-                                >
-                                    4 - Baik
-                                </option>
+                            </div>
 
-                                <option
-                                    value="5"
-                                    {{ old('rating') == 5 ? 'selected' : '' }}
-                                >
-                                    5 - Sangat Baik
-                                </option>
-
-                            </select>
-
-                        </div>
+                        @endif
 
 
-                        <!-- Pesan -->
-                        <div class="mb-4">
-
-                            <label
-                                for="message"
-                                class="form-label fw-semibold"
-                            >
-                                Pesan
-                            </label>
-
-                            <textarea
-                                name="message"
-                                id="message"
-                                rows="4"
-                                class="form-control"
-                                placeholder="Tuliskan pesan Anda..."
-                            >{{ old('message') }}</textarea>
-
-                        </div>
-
-
-                        <!-- Submit -->
-                        <button
-                            type="submit"
-                            class="btn btn-primary w-100"
+                        <form
+                            action="{{ route('rating.store') }}"
+                            method="POST"
                         >
-                            <i class="bi bi-send me-2"></i>
-                            Kirim Rating
-                        </button>
 
-                    </form>
+                            @csrf
+
+                            <!-- Nama -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="name"
+                                    class="form-label fw-semibold"
+                                >
+                                    Nama
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="Nama Anda"
+                                    value="{{ old('name') }}"
+                                >
+
+                            </div>
+
+
+                            <!-- Rating -->
+                            <div class="mb-3">
+
+                                <label
+                                    for="ratingValue"
+                                    class="form-label fw-semibold"
+                                >
+                                    Rating
+                                </label>
+
+                                <select
+                                    name="rating"
+                                    id="ratingValue"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Pilih rating
+                                    </option>
+
+                                    <option
+                                        value="1"
+                                        {{ old('rating') == 1 ? 'selected' : '' }}
+                                    >
+                                        1 - Sangat Kurang
+                                    </option>
+
+                                    <option
+                                        value="2"
+                                        {{ old('rating') == 2 ? 'selected' : '' }}
+                                    >
+                                        2 - Kurang
+                                    </option>
+
+                                    <option
+                                        value="3"
+                                        {{ old('rating') == 3 ? 'selected' : '' }}
+                                    >
+                                        3 - Cukup
+                                    </option>
+
+                                    <option
+                                        value="4"
+                                        {{ old('rating') == 4 ? 'selected' : '' }}
+                                    >
+                                        4 - Baik
+                                    </option>
+
+                                    <option
+                                        value="5"
+                                        {{ old('rating') == 5 ? 'selected' : '' }}
+                                    >
+                                        5 - Sangat Baik
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Pesan -->
+                            <div class="mb-4">
+
+                                <label
+                                    for="message"
+                                    class="form-label fw-semibold"
+                                >
+                                    Pesan
+                                </label>
+
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    rows="4"
+                                    class="form-control"
+                                    placeholder="Tuliskan pesan Anda..."
+                                >{{ old('message') }}</textarea>
+
+                            </div>
+
+
+                            <!-- Submit -->
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100"
+                            >
+                                <i class="bi bi-send me-2"></i>
+                                Kirim Rating
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
 
@@ -1059,9 +1108,7 @@
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
     <!-- Contact Section -->
@@ -1249,16 +1296,7 @@
                             </div>
 
 
-                            <div class="w-100 mb-3">
-
-                                <div
-                                    class="cf-turnstile"
-                                    data-sitekey="{{ config('services.turnstile.site_key') }}"
-                                    data-theme="light"
-                                ></div>
-
-                            </div>
-
+                            <!-- Turnstile dinonaktifkan sementara -->
 
                             <button
                                 type="submit"
@@ -1320,6 +1358,7 @@
                 e.preventDefault();
 
                 const header = document.querySelector('.navbar');
+
                 const headerHeight = header
                     ? header.offsetHeight + 15
                     : 0;

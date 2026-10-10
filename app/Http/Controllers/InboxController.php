@@ -14,6 +14,7 @@ class InboxController extends Controller
     public function index(Inbox $inbox)
     {
         $inbox = Inbox::latest()->paginate(10);
+
         return view('inboxdir.index', compact('inbox'));
     }
 
@@ -38,6 +39,7 @@ class InboxController extends Controller
         ]);
 
         Inbox::create($validate);
+
         return redirect()->route('admin-inbox.index');
     }
 
@@ -49,32 +51,24 @@ class InboxController extends Controller
         //
     }
 
+    /**
+     * Store contact form from public website.
+     */
     public function storepublic(Request $request)
     {
         $validate = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'program' => 'required|string|max:255',
             'message' => 'required|string|max:255',
         ]);
 
-        $response = Http::asForm()->post(
-            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-            [
-                'secret' => config('services.turnstile.secret_key'),
-                'response' => $request->input('cf-turnstile-response'),
-                'remoteip' => $request->ip(),
-            ]
-        );
+        // CAPTCHA DISABLED SEMENTARA
 
-        if (! $response->json('success')) {
-            return back()
-                ->withErrors(['captcha' => 'CAPTCHA verification failed.'])
-                ->withInput();
-        }
-
+        // Simpan pesan ke database
         Inbox::create($validate);
 
+        // Kirim notifikasi ke WhatsApp
         Http::post('http://127.0.0.1:3001/send', [
             'message' =>
                 "Pesan Baru dari Website\n\n" .
@@ -84,10 +78,9 @@ class InboxController extends Controller
                 "Pesan: {$validate['message']}",
         ]);
 
-        return redirect('/');
+        return redirect('/')
+            ->with('contact_success', 'Pesan berhasil dikirim!');
     }
-
-    // todo : bang limit form ke 255 di front end
 
     /**
      * Show the form for editing the specified resource.
@@ -104,12 +97,13 @@ class InboxController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'program' => 'required|string|max:255',
             'message' => 'required|string|max:255',
         ]);
 
         $inbox->update($validated);
+
         return redirect()->route('admin-inbox.index');
     }
 
@@ -119,6 +113,7 @@ class InboxController extends Controller
     public function destroy(Inbox $inbox)
     {
         $inbox->delete();
+
         return redirect()->route('admin-inbox.index');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('manage-admins', function (User $user) {
             return $user->role === 'super_admin';
-        });        
+        });
     }
 
     /**
@@ -26,5 +27,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-admins', function (User $user) {
             return $user->role === 'super_admin';
         });
+
+        if (app()->environment('local')) {
+            URL::forceScheme('https');
+        }
+
     }
 }
